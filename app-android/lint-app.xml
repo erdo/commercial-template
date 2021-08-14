@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lint>
+
+    <!-- whilst this is valid for a normal app, these are bare-bones samples for the fore-library, not meant to demonstrate app internationalisation -->
+    <!-- issue id="HardcodedText" severity="ignore"/ -->
+
+</lint>

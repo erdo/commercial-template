@@ -1,0 +1,40 @@
+{
+  "endpoints": [
+    {
+      "config_fetchconfig": "https://run.mocky.io/v3/49c2899a-b963-422b-8657-60ef24e897b4"
+    },
+    {
+      "featureflags_fetchflags": "https://run.mocky.io/v3/9a969b95-84b9-4d72-9b61-0c7135421f5d"
+    },
+    {
+      "fruit_fetchfruitsok": "https://run.mocky.io/v3/04943c15-1797-470f-a161-cf4234d765a5"
+    },
+    {
+      "fruit_fetchfruitsnotauthorised": "https://run.mocky.io/v3/64107782-92b2-4a29-bb60-d41390e70134"
+    },
+    {
+      "ticket_createuser": "https://run.mocky.io/v3/4a219284-49fb-4fc9-9c2e-8fe7d8ec3611"
+    },
+    {
+      "ticket_createuserticket": "https://run.mocky.io/v3/aa7e9f0d-45ef-45c3-9512-3d2aa1d3bdfd"
+    },
+    {
+      "ticket_fetchestimatedwaitingtime": "https://run.mocky.io/v3/d348c606-9056-46d6-af7c-329a22486144"
+    },
+    {
+      "ticket_cancelticket": "https://run.mocky.io/v3/3612c710-1dd9-42cc-bef8-899ede915392"
+    },
+    {
+      "ticket_confirmticket": "https://run.mocky.io/v3/697c0574-4a9f-46ec-9ea1-3b526c91f90f"
+    },
+    {
+      "weather_fetchpollencount": "https://run.mocky.io/v3/2132a415-e07f-47f3-a3e2-6e2a2df147c6"
+    },
+    {
+      "weather_fetchtemperature": "https://run.mocky.io/v3/3dc71499-35ee-4377-8f05-ea00376ef2b9"
+    },
+    {
+      "weather_fetchwindspeed": "https://run.mocky.io/v3/60e00580-b683-4193-9cb3-856743f7863a"
+    }
+  ]
+}

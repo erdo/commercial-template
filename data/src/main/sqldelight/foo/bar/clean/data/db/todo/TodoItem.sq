@@ -1,0 +1,13 @@
+import kotlin.Boolean;
+
+CREATE TABLE TodoItemEntity (
+  creation_timestamp_ms INTEGER NOT NULL,
+  label TEXT NOT NULL,
+  done INTEGER AS Boolean NOT NULL DEFAULT 0,
+  id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL
+);
+
+CREATE INDEX todoItem_index_done ON TodoItemEntity(done);
+
+-- INSERT INTO TodoItemEntity (label, done, creation_timestamp_ms)
+-- VALUES ('buy bread', 0, 0);

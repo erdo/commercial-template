@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="splash_background">#FF2E2E2E</color><!-- should match paper in the app theme -->
+</resources>

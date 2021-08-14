@@ -1,0 +1,93 @@
+<resources>
+
+    <string name="app_name">clean</string>
+
+    <string name="btn_yes">Yes</string>
+    <string name="btn_no">No</string>
+    <string name="btn_ok">OK</string>
+    <string name="btn_cancel">Cancel</string>
+    <string name="btn_clear">Clear</string>
+    <string name="btn_add">Add</string>
+    <string name="btn_update">Update</string>
+    <string name="btn_delete">Delete</string>
+    <string name="btn_retry">Retry</string>
+    <string name="error">Error</string>
+
+    <string name="menu">Menu</string>
+    <string name="hmm">Hmmm...</string>
+    <string name="upgrade">Time to upgrade!</string>
+    <string name="header_image">header image</string>
+
+    <string name="show_ui">Show UI</string>
+    <string name="hide_ui">Hide UI</string>
+
+    <string name="counter_model">CounterModel.kt</string>
+    <string name="todo_model">TodoModel.kt</string>
+    <string name="favourites_model">FavouritesModel.kt</string>
+    <string name="fruit_model">FruitModel.kt</string>
+    <string name="ticket_model">TicketModel.kt</string>
+    <string name="navigation_model">NavigationModel.kt</string>
+    <string name="weather_model">WeatherModel.kt</string>
+    <string name="network_model">NetworkModel.kt</string>
+    <string name="spacelaunch_model">SpaceLaunchModel.kt</string>
+    <string name="settings_model">SettingsModel.kt</string>
+
+    <string name="counter_increase">+</string>
+    <string name="counter_decrease">-</string>
+    <string name="ticket_fetch_ticket">Fetch Ticket</string>
+    <string name="ticket_check_details">Details</string>
+    <string name="ticket_fruit_none">No Fruit</string>
+    <string name="ticket_network_status">Network Available: %1$s</string>
+    <string name="ticket_wait_time">(%1$smin)</string>
+    <string name="ticket_wait_time_max">Max acceptable wait time: %1$smin</string>
+    <string name="ticket_step_init">Initialising</string>
+    <string name="ticket_step_createuser">Creating User</string>
+    <string name="ticket_step_createticket">Creating Ticket</string>
+    <string name="ticket_step_waittime">Fetching Wait Time</string>
+    <string name="ticket_step_cancelticket">Cancelling Ticket</string>
+    <string name="ticket_step_confirmticket">Confirming Ticket</string>
+    <string name="ticket_step_claimfruit">Claiming Free Fruit</string>
+    <string name="ticket_step_complete">Complete</string>
+    <string name="favourites">favourites</string>
+    <string name="favourites_description">Add some features to your favourites list by selecting the heart icon on the relevant screen</string>
+    <string name="favourites_clear_all">Clear favourites</string>
+    <string name="spacelaunch_fetch">Fetch launches</string>
+    <string name="spacelaunch_refresh">Refresh</string>
+    <string name="spacelaunch_signin">Sign in</string>
+    <string name="spacelaunch_signout">Sign out</string>
+    <string name="spacelaunch_book">Book</string>
+    <string name="spacelaunch_cancel_booking">Cancel booking</string>
+    <string name="spacelaunch_selected_launch">selected launch %1$s</string>
+    <string name="spacelaunch_launch_image">launch id:%1$s image</string>
+    <string name="spacelaunch_token">session: %1$s</string>
+    <string name="spacelaunch_nodata">No launches, tap\nFetch launches to see more</string>
+    <string name="settings_override_system">Override system settings</string>
+    <string name="settings_color">Color</string>
+    <string name="settings_red">Red</string>
+    <string name="settings_green">Green</string>
+    <string name="settings_orange">Orange</string>
+    <string name="settings_none">None</string>
+    <string name="settings_choose_color">Choose temp color</string>
+    <string name="settings_dark_mode">Dark mode</string>
+    <string name="todo_description">Create some todo items by tapping Add</string>
+    <string name="todo_no_data">The item has been removed</string>
+    <string name="todo_todo">Todo</string>
+    <string name="todo_show_done">Show Done</string>
+    <string name="todo_hide_done">Hide Done</string>
+    <string name="todo_default_label">Buy bread</string>
+    <string name="todo_confirm_delete">Do you want to delete this item?</string>
+    <string name="navigation_backstack">Navigation Backstack</string>
+
+
+    <!-- common error messages -->
+    <string name="msg_empty_message"></string>
+    <string name="err_retry_later">Please retry later</string>
+    <string name="err_network">Please check your network and try again</string>
+    <string name="err_session">Please login and try again</string>
+    <string name="err_account">Please check your account for funds</string>
+    <string name="err_upgrade_force">Upgrade required</string>
+    <string name="err_upgrade_nag">This is an old version, please upgrade soon</string>
+    <string name="err_blank_field">There is a value missing, please try again</string>
+    <string name="err_no_data">No data was available, please try again</string>
+
+</resources>

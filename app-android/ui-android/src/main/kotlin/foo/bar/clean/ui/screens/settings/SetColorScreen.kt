@@ -1,0 +1,15 @@
+package foo.bar.clean.ui.screens.settings
+
+import androidx.compose.runtime.Composable
+import foo.bar.clean.ui.actionhandlers.screens.ActionHandlerSettingsScreen
+import org.koin.compose.koinInject
+
+@Composable
+fun SetColorScreen(
+    actionHandler: foo.bar.clean.ui.actionhandlers.screens.ActionHandlerSettingsScreen = koinInject(),
+) {
+
+    SetColorView(
+        perform = { action -> actionHandler.handle(action) },
+    )
+}

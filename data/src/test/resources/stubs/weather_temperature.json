@@ -1,0 +1,38 @@
+[
+  {
+    "maxTempC": 7,
+    "minTempC": -3
+  },
+  {
+    "maxTempC": 12,
+    "minTempC": 1
+  },
+  {
+    "maxTempC": 14,
+    "minTempC": -2
+  },
+  {
+    "maxTempC": 16,
+    "minTempC": 0
+  },
+  {
+    "maxTempC": 15,
+    "minTempC": 5
+  },
+  {
+    "maxTempC": 18,
+    "minTempC": 6
+  },
+  {
+    "maxTempC": 21,
+    "minTempC": 5
+  },
+  {
+    "maxTempC": 24,
+    "minTempC": 8
+  },
+  {
+    "maxTempC": 22,
+    "minTempC": 7
+  }
+]

@@ -1,0 +1,30 @@
+dependencies {
+    // serialization
+    implementation(libs.kotlinx.serialization)
+    // splash screen
+    implementation(libs.splashscreen)
+    // images
+    implementation(libs.coil.compose)
+    implementation(libs.lottie)
+    // reactivity
+    implementation(libs.fore.android)
+    implementation(libs.fore.compose)
+    // db
+    implementation(libs.sqldelight.android)
+    // di
+    implementation(libs.koin.compose)
+    implementation(libs.koin.core)
+    // build
+    implementation(libs.multidex)
+    // compose
+    implementation(libs.compose.activity)
+    implementation(libs.compose.constraint.layout)
+    implementation(platform(libs.compose.bom))
+    implementation("androidx.compose.material3:material3")
+    implementation("androidx.compose.ui:ui")
+    implementation("androidx.compose.ui:ui-tooling-preview")
+    implementation("androidx.compose.ui:ui-tooling")
+    debugImplementation("androidx.compose.ui:ui-tooling-preview")
+    debugImplementation("androidx.compose.ui:ui-tooling")
+    debugImplementation("androidx.compose.ui:ui-test-manifest")
+}

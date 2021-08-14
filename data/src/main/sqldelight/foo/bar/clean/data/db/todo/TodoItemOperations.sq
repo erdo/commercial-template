@@ -1,0 +1,62 @@
+
+createItem:
+INSERT INTO TodoItemEntity (label, creation_timestamp_ms)
+VALUES (?, ?);
+
+insertItem:
+INSERT INTO TodoItemEntity(label, done, creation_timestamp_ms)
+VALUES ?;
+
+lastInsertRowId:
+SELECT last_insert_rowid();
+
+changes:
+SELECT changes();
+
+select:
+SELECT *
+FROM TodoItemEntity
+WHERE id == ?;
+
+selectAll:
+SELECT *
+FROM TodoItemEntity
+ORDER BY creation_timestamp_ms DESC;
+
+selectAllLimit:
+SELECT *
+FROM TodoItemEntity
+ORDER BY creation_timestamp_ms DESC
+LIMIT ?;
+
+selectAllDone:
+SELECT *
+FROM TodoItemEntity
+WHERE done == ?
+ORDER BY creation_timestamp_ms DESC;
+
+count:
+SELECT COUNT (*)
+FROM TodoItemEntity;
+
+countDone:
+SELECT COUNT (*)
+FROM TodoItemEntity
+WHERE done == 1;
+
+countNotDone:
+SELECT COUNT (*)
+FROM TodoItemEntity
+WHERE done == 0;
+
+updateItem:
+UPDATE TodoItemEntity
+SET label = ?, done = ?, creation_timestamp_ms = ?
+WHERE id=?;
+
+deleteItem:
+DELETE FROM TodoItemEntity
+WHERE id=?;
+
+deleteAll:
+DELETE FROM TodoItemEntity;

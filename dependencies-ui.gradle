@@ -1,0 +1,6 @@
+dependencies {
+    // reactivity
+    implementation(libs.fore.core)
+    // di
+    implementation(libs.koin.core)
+}
