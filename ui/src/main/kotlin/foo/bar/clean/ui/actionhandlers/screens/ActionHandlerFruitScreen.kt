@@ -7,7 +7,7 @@ import foo.bar.clean.ui.actionhandlers.GlobalActionHandler
 import foo.bar.clean.ui.actionhandlers.koinInject
 
 class ActionHandlerFruitScreen(
-    private val fruitModel: FruitModel = koinInject()
+    private val fruitModel: FruitModel = koinInject(),
 ) : GlobalActionHandler<Act.ScreenFruit>() {
 
     override fun __handle(act: Act.ScreenFruit) {

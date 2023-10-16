@@ -13,7 +13,7 @@ import co.early.fore.kt.core.observer.ObservableImp
  */
 abstract class ObservableObserver<S : State>(
     initialState: S,
-    vararg observablesList: Observable
+    vararg observablesList: Observable,
 ) : ReadableState<S>, Observable {
 
     final override var state = initialState

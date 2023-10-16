@@ -13,15 +13,18 @@ import kotlinx.serialization.Serializable
  * This is the first service to be called - it gets the main endpoint to call for all the
  * other services, and specifies the min supported version
  *
- * This is an HTTP call, NOT an HTTPS call, so that older clients can still connect to this URL
+ * Would prefer an HTTP call NOT HTTPS, so that older clients can still connect to this URL
  * and be told to upgrade in the case that a certificate has been invalidated
+ * (but mocky.io doesn't support HTTP),
  */
 class PhoneHomeApi(
     private val httpClient: HttpClient,
     private val url: String = "https://run.mocky.io/v3/707ec06d-3008-4e73-a383-7a2177f3ef90",
 ) {
 
-    private val delay = if (SLOMO) { "/?mocky-delay=500ms" } else ""
+    private val delay = if (SLOMO) {
+        "/?mocky-delay=500ms"
+    } else ""
 
     suspend fun phoneHome(): PhoneHomeResultPojo {
         return httpClient.get("$url$delay").body()
@@ -35,5 +38,5 @@ class PhoneHomeApi(
 data class PhoneHomeResultPojo(
     val endpoints: String,
     val minSupportedVersion: String,
-    val minNoNagVersion: String
+    val minNoNagVersion: String,
 )

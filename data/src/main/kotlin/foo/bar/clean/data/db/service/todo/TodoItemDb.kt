@@ -8,5 +8,6 @@ import java.util.concurrent.Executors
 
 class TodoItemDb(df: DriverFactory) {
     val db = TodoListDatabase(df.createDriver(TodoListDatabase.Schema, "TodoListDatabase"))
-    val dispatcher: CoroutineDispatcher = Executors.newSingleThreadExecutor().asCoroutineDispatcher()
+    val dispatcher: CoroutineDispatcher =
+        Executors.newSingleThreadExecutor().asCoroutineDispatcher()
 }

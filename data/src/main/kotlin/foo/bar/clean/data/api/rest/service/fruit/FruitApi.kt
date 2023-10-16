@@ -67,5 +67,5 @@ class FruitApi(
 data class FruitPojo(
     val name: String,
     val isCitrus: Boolean,
-    val tastyPercentScore: Int
+    val tastyPercentScore: Int,
 )

@@ -32,7 +32,7 @@ class ErrorHandlerRest(private val logWrapper: Logger? = null) : ErrorHandler<Da
 
     override suspend fun <CE : MessageProvider<DataError>> handleError(
         t: Throwable,
-        customErrorKlazz: KClass<CE>?
+        customErrorKlazz: KClass<CE>?,
     ): DataError {
 
         Fore.getLogger(logWrapper).d("handling error in global error handler", t)
@@ -45,10 +45,18 @@ class ErrorHandlerRest(private val logWrapper: Logger? = null) : ErrorHandler<Da
 
                 //initial error type
                 var msg = when (t) {
-                    is ClientRequestException -> { Server } // in 400..499
-                    is RedirectResponseException -> { Server } //in 300..399
-                    is ServerResponseException -> { Server } //in 500..599
-                    else -> { Network } //something else
+                    is ClientRequestException -> {
+                        Server
+                    } // in 400..499
+                    is RedirectResponseException -> {
+                        Server
+                    } //in 300..399
+                    is ServerResponseException -> {
+                        Server
+                    } //in 500..599
+                    else -> {
+                        Network
+                    } //something else
                 }
 
                 val response = t.response
@@ -71,6 +79,7 @@ class ErrorHandlerRest(private val logWrapper: Logger? = null) : ErrorHandler<Da
 
                 msg
             }
+
             is NoTransformationFoundException -> Server // content type is probably wrong, check response from server in app logs
             is SerializationException -> Server //parsing issue, maybe response is not json, or does not match expected type, or is empty
             is UnknownServiceException -> SecurityUnknown //most likely https related, check for usesCleartextTraffic if required
@@ -86,7 +95,7 @@ class ErrorHandlerRest(private val logWrapper: Logger? = null) : ErrorHandler<Da
     private suspend fun <CE : MessageProvider<DataError>> parseCustomError(
         provisionalErrorMessage: DataError,
         errorResponse: HttpResponse,
-        customErrorKlazz: KClass<CE>
+        customErrorKlazz: KClass<CE>,
     ): DataError {
 
         var customError: DataError = provisionalErrorMessage
@@ -94,8 +103,10 @@ class ErrorHandlerRest(private val logWrapper: Logger? = null) : ErrorHandler<Da
         try {
 
             val bodyContent = errorResponse.bodyAsText(Charsets.UTF_8)
-            Fore.getLogger(logWrapper).d("parseCustomError() attempting to parse this content:\n $bodyContent")
-            val errorClass = Json.decodeFromString(serializer(customErrorKlazz.java), bodyContent) as CE
+            Fore.getLogger(logWrapper)
+                .d("parseCustomError() attempting to parse this content:\n $bodyContent")
+            val errorClass =
+                Json.decodeFromString(serializer(customErrorKlazz.java), bodyContent) as CE
             customError = errorClass.message
 
         } catch (t: Throwable) {
@@ -103,11 +114,23 @@ class ErrorHandlerRest(private val logWrapper: Logger? = null) : ErrorHandler<Da
             Fore.getLogger(logWrapper).e("parseCustomError() unexpected issue $t")
 
             when (t) {
-                is IllegalStateException, is CoderMalfunctionError -> {Fore.getLogger(logWrapper).e("01")} //problem reading body text
-                is SerializationException -> {Fore.getLogger(logWrapper).e("02")} //parsing error, @Serializable missing, wrong error class specified etc
-                is UnsupportedEncodingException -> {Fore.getLogger(logWrapper).e("03")}
-                is NullPointerException -> {Fore.getLogger(logWrapper).e("04")}
-                else -> {Fore.getLogger(logWrapper).e("05")}
+                is IllegalStateException, is CoderMalfunctionError -> {
+                    Fore.getLogger(logWrapper).e("01")
+                } //problem reading body text
+                is SerializationException -> {
+                    Fore.getLogger(logWrapper).e("02")
+                } //parsing error, @Serializable missing, wrong error class specified etc
+                is UnsupportedEncodingException -> {
+                    Fore.getLogger(logWrapper).e("03")
+                }
+
+                is NullPointerException -> {
+                    Fore.getLogger(logWrapper).e("04")
+                }
+
+                else -> {
+                    Fore.getLogger(logWrapper).e("05")
+                }
             }
         }
 

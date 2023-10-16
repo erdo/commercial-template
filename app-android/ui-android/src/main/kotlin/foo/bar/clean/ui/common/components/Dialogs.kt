@@ -5,7 +5,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import foo.bar.clean.ui.common.components.elements.Btn
 import foo.bar.clean.ui.common.components.elements.BtnSpec
-import foo.bar.clean.ui.theme.AppTheme
 import foo.bar.clean.ui.theme.LocalAppColors
 
 @Composable

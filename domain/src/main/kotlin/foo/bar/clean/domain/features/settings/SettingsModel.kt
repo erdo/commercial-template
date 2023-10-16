@@ -29,7 +29,7 @@ class SettingsModel(
 
         Fore.i("load()")
 
-        if (state.loading){
+        if (state.loading) {
             return
         }
 

@@ -17,7 +17,7 @@ class AuthServiceImp(
 
     override suspend fun login(email: String): Either<DomainError, Auth> {
 
-        if (SLOMO){
+        if (SLOMO) {
             delay(1000)
         }
 

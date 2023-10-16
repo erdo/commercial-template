@@ -28,7 +28,7 @@ import foo.bar.clean.domain.features.observeUntilLoaded
 class InitModel(
     private val preInitModel: PreInitModel,
     private val perSista: PerSista,
-    vararg models: ReadableStateCanLoad<*>
+    vararg models: ReadableStateCanLoad<*>,
 ) : ObservableObserver<InitState>(
     initialState = InitState(),
     preInitModel,
@@ -49,7 +49,7 @@ class InitModel(
     fun initialise() {
         Fore.i("initialise()")
 
-        if (state.step is Step.Loading){
+        if (state.step is Step.Loading) {
             return
         }
 
@@ -106,7 +106,12 @@ class InitModel(
                 preInitUninitialised() -> InitState(step = Step.Uninitialised)
                 preInitFailed() -> InitState(step = Step.Error(error))
                 initError != DomainError.NoError -> InitState(step = Step.Error(initError))
-                !preInitComplete || loadingCount > 0 -> InitState(step = Step.Loading(overallProgress))
+                !preInitComplete || loadingCount > 0 -> InitState(
+                    step = Step.Loading(
+                        overallProgress
+                    )
+                )
+
                 else -> InitState(Step.Ready(nagBeforeStart = (error == DomainError.UpgradeNag)))
             }
         }
@@ -128,9 +133,15 @@ private fun List<ReadableStateCanLoad<*>>.numberStillLoading(): Int {
     }
 }
 
-private fun overallProgress(preInitProgress: Float, preInitComplete:Boolean, initProgress: Float = 0f): Float {
+private fun overallProgress(
+    preInitProgress: Float,
+    preInitComplete: Boolean,
+    initProgress: Float = 0f,
+): Float {
     val overallProgress = preInitProgress * 0.5f +
-            if (preInitComplete) { initProgress * 0.5f } else 0f
+            if (preInitComplete) {
+                initProgress * 0.5f
+            } else 0f
     return if (overallProgress > 0.65) 0.95f else overallProgress
 }
 

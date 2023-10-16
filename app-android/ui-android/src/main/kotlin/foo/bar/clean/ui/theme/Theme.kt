@@ -18,10 +18,10 @@ import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
 import co.early.fore.compose.observeAsState
+import foo.bar.clean.domain.features.ReadableState
 import foo.bar.clean.domain.features.settings.DarkMode
 import foo.bar.clean.domain.features.settings.SettingsModel
 import foo.bar.clean.domain.features.settings.SettingsState
-import foo.bar.clean.domain.features.ReadableState
 import org.koin.compose.koinInject
 
 val lightColors = AppColors(
@@ -86,9 +86,11 @@ fun AppTheme(
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                 ) {
-                    Box(modifier = Modifier
-                        .fillMaxSize()
-                        .background(appColors.paper)) {
+                    Box(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .background(appColors.paper)
+                    ) {
                         content()
                     }
                 }

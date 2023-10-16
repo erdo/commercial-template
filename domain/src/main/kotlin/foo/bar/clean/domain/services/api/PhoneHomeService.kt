@@ -12,5 +12,5 @@ interface PhoneHomeService {
 data class PhoneHomeResult(
     val endpointsUrl: String,
     val minSupportedVersion: String,
-    val minNoNagVersion: String
+    val minNoNagVersion: String,
 )

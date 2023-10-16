@@ -37,18 +37,18 @@ import co.early.fore.kt.core.delegate.Fore
 import co.early.fore.ui.size.LocalWindowSize
 import co.early.fore.ui.size.WindowSize
 import foo.bar.clean.domain.features.todo.TodoState
-import foo.bar.clean.ui.actionhandlers.Act
 import foo.bar.clean.ui.R
+import foo.bar.clean.ui.actionhandlers.Act
 import foo.bar.clean.ui.common.components.CircularProgressIndicatorDelayed
 import foo.bar.clean.ui.common.components.StateWrapperView
 import foo.bar.clean.ui.common.components.ViewTemplate
 import foo.bar.clean.ui.common.components.elements.Btn
 import foo.bar.clean.ui.common.components.elements.BtnSpec
-import foo.bar.clean.ui.common.components.elements.SW1
-import foo.bar.clean.ui.common.components.elements.SW2
 import foo.bar.clean.ui.common.components.elements.SH1
 import foo.bar.clean.ui.common.components.elements.SH2
 import foo.bar.clean.ui.common.components.elements.SH3
+import foo.bar.clean.ui.common.components.elements.SW1
+import foo.bar.clean.ui.common.components.elements.SW2
 import foo.bar.clean.ui.common.components.elements.Txt
 import foo.bar.clean.ui.common.components.extraPaddingForHideUiBtn
 import foo.bar.clean.ui.theme.LocalAppColors
@@ -56,7 +56,7 @@ import foo.bar.clean.ui.theme.LocalAppColors
 @Composable
 fun TodoView(
     todoState: TodoState,
-    perform: (foo.bar.clean.ui.actionhandlers.Act) -> Unit = {},
+    perform: (Act) -> Unit = {},
     size: WindowSize = LocalWindowSize.current,
 ) {
     StateWrapperView(
@@ -67,11 +67,11 @@ fun TodoView(
             Todos(
                 todoState = todoState,
                 size = size,
-                itemSelected = { index -> perform(foo.bar.clean.ui.actionhandlers.Act.ScreenTodo.ToEditScreen(index)) },
-                itemDoneChecked = { index, _ -> perform(foo.bar.clean.ui.actionhandlers.Act.ScreenTodo.ToggleDone(index)) },
-                itemDelete = { index -> perform(foo.bar.clean.ui.actionhandlers.Act.ScreenTodo.ItemDelete(index)) },
-                toggleShowDoneBtnClicked = { perform(foo.bar.clean.ui.actionhandlers.Act.ScreenTodo.ToggleShowDone) },
-                addBtnClicked = { perform(foo.bar.clean.ui.actionhandlers.Act.ScreenTodo.ToAddScreen) },
+                itemSelected = { index -> perform(Act.ScreenTodo.ToEditScreen(index)) },
+                itemDoneChecked = { index, _ -> perform(Act.ScreenTodo.ToggleDone(index)) },
+                itemDelete = { index -> perform(Act.ScreenTodo.ItemDelete(index)) },
+                toggleShowDoneBtnClicked = { perform(Act.ScreenTodo.ToggleShowDone) },
+                addBtnClicked = { perform(Act.ScreenTodo.ToAddScreen) },
             )
         }
     }

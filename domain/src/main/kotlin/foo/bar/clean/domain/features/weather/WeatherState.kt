@@ -1,10 +1,10 @@
 package foo.bar.clean.domain.features.weather
 
 import foo.bar.clean.domain.DomainError
+import foo.bar.clean.domain.features.State
 import foo.bar.clean.domain.services.api.PollenCount
 import foo.bar.clean.domain.services.api.Temperature
 import foo.bar.clean.domain.services.api.WindSpeed
-import foo.bar.clean.domain.features.State
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.Transient
 

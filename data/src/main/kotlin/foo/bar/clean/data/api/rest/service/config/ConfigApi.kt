@@ -17,7 +17,9 @@ class ConfigApi(
     private val endpoints: Endpoints, // Config: "https://run.mocky.io/v3/6d6f12f2-7ac5-4957-a7f2-8bb319587b5b"
 ) {
 
-    private val delay = if (SLOMO) { "/?mocky-delay=500ms" } else ""
+    private val delay = if (SLOMO) {
+        "/?mocky-delay=500ms"
+    } else ""
 
     suspend fun fetchConfig(): ConfigPojo {
         return httpClient.get(endpoints.url(Config) + delay).body()

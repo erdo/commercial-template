@@ -19,11 +19,143 @@ import foo.bar.clean.domain.features.ReadableStateCanLoad
  * Open the Structure pane on the left to get an overview of the public API for this model, also
  * see the UnitTests for a full understanding of the behaviour
  *
+ *
+
+ * Example Locations:
+ *
+ * sealed class Location {
+ *
+ *     data object NewYork : Location()
+ *
+ *     data object Tokyo : Location()
+ *
+ *     data class Sydney(val withSunCreamFactor: Int? = null) : Location()
+ *
+ *     data object SunCreamSelector: Location()
+ *
+ *     sealed class EuropeanLocations : Location() {
+ *
+ *         data object London : EuropeanLocations()
+ *
+ *         data object Paris : EuropeanLocations()
+ *     }
+ * }
+ *
+ * NavigationModel(homeLocation: London)
+ *
+ *
+ * A. Regular forward navigation
+ *
+ * navigateTo(Paris)
+ * navigateTo(NewYork)
+ *
+ * backstack: London > Paris > NewYork
+ * currentLocation: NewYork
+ *
+ *
+ * B. Regular back navigation
+ *
+ * navigateTo(Paris)
+ * navigateTo(NewYork)
+ * popBackStack()
+ *
+ * backstack: London > Paris
+ * currentLocation: Paris
+ *
+ *
+ * C. Back navigation multiple steps
+ *
+ * navigateTo(Paris)
+ * navigateTo(NewYork)
+ * popBackStack(times = 2)
+ *
+ * backstack: London
+ * currentLocation: London
+ *
+ *
+ * D. Visiting locations more than once
+ *
+ * navigateTo(Paris)
+ * navigateTo(NewYork)
+ * navigateTo(Paris)
+ * navigateTo(Tokyo)
+ *
+ * backstack: London > Paris > NewYork > Paris > Tokyo
+ * currentLocation: Tokyo
+ *
+ *
+ * E. Recycling previous locations
+ *
+ * navigateTo(Paris)
+ * navigateTo(NewYork)
+ * navigateBackTo(Paris)
+ * navigateTo(Tokyo)
+ *
+ * backstack: London > Paris > Tokyo
+ * currentLocation: Tokyo
+ *
+ *
+ * F. Recycling previous locations when they were never visited in the first place
+ *
+ * navigateTo(Sydney)
+ * navigateTo(NewYork)
+ * navigateBackTo(Paris)
+ * navigateTo(Tokyo)
+ *
+ * backstack: London > Sydney > NewYork > Paris > Tokyo
+ * currentLocation: Tokyo
+ *
+ *
+ * G. Visiting a location that you don't want added to the back stack
+ *
+ * navigateTo(Sydney)
+ * navigateTo(NewYork)
+ * navigateTo(Paris, addToHistory = false)
+ * navigateTo(Tokyo)
+ *
+ * backstack: London > Sydney > NewYork > Tokyo
+ * currentLocation: Tokyo
+ *
+ *
+ * H. Returning data from the current Location to a Location further back in the stack
+ *
+ * navigateTo(Paris)
+ * navigateTo(NewYork)
+ * navigateTo(Sydney)
+ * navigateTo(SunCreamSelector)
+ * popBackStack { it -> //Sydney
+ *    when(it){
+ *      Sydney -> it.copy(withSunCreamFactor = 30)
+ *      else -> it
+ *    }
+ * }
+ *
+ * backstack: London > Paris > NewYork > Sydney(30)
+ * currentLocation: Sydney(30)
+ *
+ *
+ * I. Arbitrarily rewriting the entire backstack
+ *
+ * updateBackStack(
+ *    listOf(
+ *      Paris,
+ *      London,
+ *      Sydney(50),
+ *      Tokyo,
+ *      London
+ *    )
+ * )
+ *
+ * backstack: Paris > London > Sydney(50) > Tokyo > London
+ * currentLocation: London
+ *
+ *
+ *
  * Copyright © 2015-2023 early.co. All rights reserved.
  */
 class NavigationModel(
     private val perSista: PerSista,
-    homeLocation: Location = HOME_LOCATION
+    homeLocation: Location = HOME_LOCATION,
 ) : ReadableStateCanLoad<NavigationState>, Observable by ObservableImp() {
 
     override var state = NavigationState(backStack = listOf(homeLocation))
@@ -75,7 +207,7 @@ class NavigationModel(
         val newBackStack = if (indexInBackStack >= 0) {
             state.backStack.subList(0, indexInBackStack)
         } else {
-            Fore.i("   [ ${location.javaClass.simpleName} not found in back stack, adding new location: ${location.javaClass.simpleName} ]")
+            Fore.i(" >>> ${location.javaClass.simpleName} not found in back stack, adding new location: ${location.javaClass.simpleName}")
             state.backStack
         }.toMutableList()
 
@@ -158,12 +290,4 @@ class NavigationModel(
             notifyObservers()
         }
     }
-
-//    fun importDeepLink(): {
-//
-//    }
-//
-//    fun exportToDeeplink(): String {
-//        just serialize state to json (and optionally MD5 it to make it smaller maybe?)
-//    }
 }

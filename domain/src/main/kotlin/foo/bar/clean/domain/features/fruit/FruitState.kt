@@ -1,9 +1,9 @@
 package foo.bar.clean.domain.features.fruit
 
 import foo.bar.clean.domain.DomainError
+import foo.bar.clean.domain.features.State
 import foo.bar.clean.domain.services.api.Fruit
 import foo.bar.clean.domain.services.api.Fruit.FruitNone
-import foo.bar.clean.domain.features.State
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.Transient
 import java.util.Random

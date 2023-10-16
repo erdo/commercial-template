@@ -40,7 +40,7 @@ fun StateWrapperView(
     state: Any,
     uiIsVisibleDefault: Boolean = true,
     size: WindowSize = LocalWindowSize.current,
-    content: @Composable () -> Unit
+    content: @Composable () -> Unit,
 ) {
 
     val show = remember { mutableStateOf(uiIsVisibleDefault) }

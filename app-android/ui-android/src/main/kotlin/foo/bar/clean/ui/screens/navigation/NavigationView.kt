@@ -21,8 +21,8 @@ import co.early.fore.ui.size.WindowSize
 import foo.bar.clean.domain.features.navigation.HOME_LOCATION
 import foo.bar.clean.domain.features.navigation.Location
 import foo.bar.clean.domain.features.navigation.NavigationState
-import foo.bar.clean.ui.actionhandlers.Act
 import foo.bar.clean.ui.R
+import foo.bar.clean.ui.actionhandlers.Act
 import foo.bar.clean.ui.common.components.StateWrapperView
 import foo.bar.clean.ui.common.components.ViewTemplate
 import foo.bar.clean.ui.common.components.elements.Btn
@@ -37,7 +37,7 @@ import kotlinx.serialization.json.Json
 @Composable
 fun NavigationView(
     viewState: NavigationState,
-    perform: (foo.bar.clean.ui.actionhandlers.Act) -> Unit = {},
+    perform: (Act) -> Unit = {},
     size: WindowSize = LocalWindowSize.current,
 ) {
     StateWrapperView(
@@ -58,7 +58,13 @@ fun NavigationView(
             Navigation(
                 viewState = viewState,
                 size = size,
-                updateBackStack = { backstack -> perform(foo.bar.clean.ui.actionhandlers.Act.ScreenNavigation.UpdateBackstack(backstack)) },
+                updateBackStack = { backstack ->
+                    perform(
+                        Act.ScreenNavigation.UpdateBackstack(
+                            backstack
+                        )
+                    )
+                },
             )
         }
     }
@@ -100,16 +106,18 @@ fun Navigation(
 }
 
 
-private fun NavigationState.export() : String {
+private fun NavigationState.export(): String {
     return try {
         Json.encodeToString(NavigationState.serializer(), this)
-    }catch (e: Exception){
+    } catch (e: Exception) {
         "Parsing exception: $e"
     }
 }
 
-private fun String.import() : List<Location> {
+private fun String.import(): List<Location> {
     return try {
         Json.decodeFromString(NavigationState.serializer(), this).backStack
-    } catch (e: Exception){ listOf(HOME_LOCATION) }
+    } catch (e: Exception) {
+        listOf(HOME_LOCATION)
+    }
 }

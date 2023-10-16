@@ -6,8 +6,8 @@ import co.early.fore.kt.core.delegate.Fore
 import co.early.fore.kt.core.observer.ObservableImp
 import co.early.persista.PerSista
 import foo.bar.clean.domain.SLOMO
-import foo.bar.clean.domain.features.config.ConfigModel
 import foo.bar.clean.domain.features.ReadableState
+import foo.bar.clean.domain.features.config.ConfigModel
 import kotlinx.coroutines.delay
 
 /**
@@ -33,13 +33,16 @@ class CounterModel(
 
     init {
         launchIO {
-            if (SLOMO){
+            if (SLOMO) {
                 delay(1000)
             }
             perSista.read(state) {
                 state = it.copy(
                     loading = false,
-                    amount = it.amount.coerceIn(min, max), // coerce in case config has changed since the last time
+                    amount = it.amount.coerceIn(
+                        min,
+                        max
+                    ), // coerce in case config has changed since the last time
                     max = max,
                     min = min,
                 )

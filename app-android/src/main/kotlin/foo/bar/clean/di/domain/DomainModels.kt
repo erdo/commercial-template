@@ -1,6 +1,5 @@
 package foo.bar.clean.di.domain
 
-import co.early.fore.kt.core.delegate.Fore
 import foo.bar.clean.domain.features.auth.AuthModel
 import foo.bar.clean.domain.features.config.ConfigModel
 import foo.bar.clean.domain.features.counter.CounterModel

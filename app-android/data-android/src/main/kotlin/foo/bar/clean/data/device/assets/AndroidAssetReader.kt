@@ -20,7 +20,7 @@ class AndroidAssetReader(
     private val assetManager: AssetManager,
     private val mainDispatcher: CoroutineDispatcher = Dispatchers.Main,
     private val readDispatcher: CoroutineDispatcher = Executors.newSingleThreadExecutor()
-        .asCoroutineDispatcher()
+        .asCoroutineDispatcher(),
 ) : AssetReader {
 
     override fun asInputStream(fileName: String): InputStream {

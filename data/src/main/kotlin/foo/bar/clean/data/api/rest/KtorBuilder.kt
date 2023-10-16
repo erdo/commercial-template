@@ -1,10 +1,10 @@
 package foo.bar.clean.data.api.rest
 
-import io.ktor.client.*
-import io.ktor.client.engine.okhttp.*
+import io.ktor.client.HttpClient
+import io.ktor.client.engine.okhttp.OkHttp
 import io.ktor.client.plugins.HttpRequestRetry
-import io.ktor.client.plugins.contentnegotiation.*
-import io.ktor.serialization.kotlinx.json.*
+import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
+import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
 import okhttp3.Interceptor
 
@@ -42,7 +42,7 @@ object KtorBuilder {
                     }
                 )
             }
-            install(HttpRequestRetry){
+            install(HttpRequestRetry) {
                 maxRetries = 2
                 exponentialDelay(
                     maxDelayMs = 3000,

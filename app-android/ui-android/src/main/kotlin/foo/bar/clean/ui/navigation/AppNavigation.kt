@@ -79,11 +79,11 @@ import org.koin.compose.koinInject
 fun <T : Act> AppNavigation(
     currentLocation: Location,
     size: WindowSize = LocalWindowSize.current,
-    title: String = AppScreenTitle(currentLocation),
-    mainContent: @Composable (PaddingValues) -> Unit = AppScreenContent(currentLocation),
-    startDrawerItems: List<NavigationItem> = AppStartDrawerItems(currentLocation),
-    actionItems: List<NavigationItem> = AppActionItems(currentLocation),
-    bottomBarItems: List<NavigationItem> = AppBottomBarItems(currentLocation),
+    title: String = appScreenTitle(currentLocation),
+    mainContent: @Composable (PaddingValues) -> Unit = appScreenContent(currentLocation),
+    startDrawerItems: List<NavigationItem> = appStartDrawerItems(currentLocation),
+    actionItems: List<NavigationItem> = appActionItems(currentLocation),
+    bottomBarItems: List<NavigationItem> = appBottomBarItems(currentLocation),
     userActionHandler: foo.bar.clean.ui.actionhandlers.ActionHandler<T>,
     //userActionHandler: ActionHandler<T> = ActionHandlers(currentLocation),
 ) {
@@ -170,7 +170,7 @@ fun <T : Act> AppNavigation(
 }
 
 @Composable
-fun AppScreenTitle(location: Location): String {
+fun appScreenTitle(location: Location): String {
 
     Fore.i("AppScreenTitle()")
 
@@ -189,7 +189,7 @@ fun AppScreenTitle(location: Location): String {
 }
 
 @Composable
-fun AppScreenContent(location: Location) =
+fun appScreenContent(location: Location) =
     @Composable { paddingValues: PaddingValues ->
         Box(modifier = Modifier.padding(paddingValues)) {
 
@@ -225,7 +225,7 @@ fun AppScreenContent(location: Location) =
     }
 
 @Composable
-fun AppStartDrawerItems(
+fun appStartDrawerItems(
     currentLocation: Location,
 ): List<NavigationItem> {
 
@@ -240,7 +240,7 @@ fun AppStartDrawerItems(
                 )
             },
             localisedDescription = stringResource(id = R.string.counter_model),
-            action = foo.bar.clean.ui.actionhandlers.Act.Global.ToCounterScreen,
+            action = Act.Global.ToCounterScreen,
             enabled = currentLocation != Location.CounterLocation,
         ),
         NavigationItem(
@@ -251,7 +251,7 @@ fun AppStartDrawerItems(
                 )
             },
             localisedDescription = stringResource(id = R.string.todo_model),
-            action = foo.bar.clean.ui.actionhandlers.Act.Global.ToTodoScreen,
+            action = Act.Global.ToTodoScreen,
             enabled = currentLocation !is Location.TodoLocations,
         ),
         NavigationItem(
@@ -262,7 +262,7 @@ fun AppStartDrawerItems(
                 )
             },
             localisedDescription = stringResource(id = R.string.spacelaunch_model),
-            action = foo.bar.clean.ui.actionhandlers.Act.Global.ToSpaceLaunchScreen,
+            action = Act.Global.ToSpaceLaunchScreen,
             enabled = currentLocation !is Location.SpaceLaunchLocations,
         ),
         NavigationItem(
@@ -273,7 +273,7 @@ fun AppStartDrawerItems(
                 )
             },
             localisedDescription = stringResource(id = R.string.ticket_model),
-            action = foo.bar.clean.ui.actionhandlers.Act.Global.ToTicketScreen,
+            action = Act.Global.ToTicketScreen,
             enabled = currentLocation !is Location.TicketLocation,
         ),
         NavigationItem(
@@ -284,7 +284,7 @@ fun AppStartDrawerItems(
                 )
             },
             localisedDescription = stringResource(id = R.string.favourites_model),
-            action = foo.bar.clean.ui.actionhandlers.Act.Global.ToFavouriteScreen,
+            action = Act.Global.ToFavouriteScreen,
             enabled = currentLocation != Location.FavouritesLocation,
         ),
         NavigationItem(
@@ -295,7 +295,7 @@ fun AppStartDrawerItems(
                 )
             },
             localisedDescription = stringResource(id = R.string.navigation_model),
-            action = foo.bar.clean.ui.actionhandlers.Act.Global.ToNavigationScreen,
+            action = Act.Global.ToNavigationScreen,
             enabled = currentLocation !is Location.NavigationLocation,
         ),
         NavigationItem(
@@ -306,14 +306,14 @@ fun AppStartDrawerItems(
                 )
             },
             localisedDescription = stringResource(id = R.string.settings_model),
-            action = foo.bar.clean.ui.actionhandlers.Act.Global.ToSettingsScreen,
+            action = Act.Global.ToSettingsScreen,
             enabled = currentLocation !is Location.SettingsLocations,
         ),
     )
 }
 
 @Composable
-fun AppActionItems(
+fun appActionItems(
     currentLocation: Location,
     favouritesModel: FavouritesModel = koinInject(),
 ): List<NavigationItem> {
@@ -325,7 +325,7 @@ fun AppActionItems(
     return when (currentLocation) {
         Location.CounterLocation -> {
             listOf(
-                FavNavigationItem(
+                favNavigationItem(
                     favouritesState = favouritesState,
                     feature = Feature.Counter
                 )
@@ -334,7 +334,7 @@ fun AppActionItems(
 
         is Location.TodoLocations -> {
             listOf(
-                FavNavigationItem(
+                favNavigationItem(
                     favouritesState = favouritesState,
                     feature = Feature.Todo
                 )
@@ -343,7 +343,7 @@ fun AppActionItems(
 
         is Location.SpaceLaunchLocations -> {
             listOf(
-                FavNavigationItem(
+                favNavigationItem(
                     favouritesState = favouritesState,
                     feature = Feature.SpaceLaunch
                 )
@@ -352,7 +352,7 @@ fun AppActionItems(
 
         Location.FavouritesLocation -> {
             listOf(
-                FavNavigationItem(
+                favNavigationItem(
                     favouritesState = favouritesState,
                     feature = Feature.Favourites
                 )
@@ -361,7 +361,7 @@ fun AppActionItems(
 
         is Location.SettingsLocations -> {
             listOf(
-                FavNavigationItem(
+                favNavigationItem(
                     favouritesState = favouritesState,
                     feature = Feature.Settings
                 )
@@ -370,7 +370,7 @@ fun AppActionItems(
 
         is Location.FruitLocation -> {
             listOf(
-                FavNavigationItem(
+                favNavigationItem(
                     favouritesState = favouritesState,
                     feature = Feature.Fruit
                 )
@@ -379,7 +379,7 @@ fun AppActionItems(
 
         is Location.TicketLocation -> {
             listOf(
-                FavNavigationItem(
+                favNavigationItem(
                     favouritesState = favouritesState,
                     feature = Feature.Ticket
                 )
@@ -391,7 +391,7 @@ fun AppActionItems(
 }
 
 @Composable
-fun AppBottomBarItems(
+fun appBottomBarItems(
     currentLocation: Location,
 ): List<NavigationItem>{
 
@@ -406,7 +406,7 @@ fun AppBottomBarItems(
                 )
             },
             localisedDescription = stringResource(id = R.string.counter_model),
-            action = foo.bar.clean.ui.actionhandlers.Act.Global.ToCounterScreen,
+            action = Act.Global.ToCounterScreen,
             enabled = currentLocation != Location.CounterLocation,
         ),
         NavigationItem(
@@ -417,7 +417,7 @@ fun AppBottomBarItems(
                 )
             },
             localisedDescription = stringResource(id = R.string.favourites_model),
-            action = foo.bar.clean.ui.actionhandlers.Act.Global.ToFavouriteScreen,
+            action = Act.Global.ToFavouriteScreen,
             enabled = currentLocation != Location.FavouritesLocation,
         ),
         NavigationItem(
@@ -428,7 +428,7 @@ fun AppBottomBarItems(
                 )
             },
             localisedDescription = stringResource(id = R.string.settings_model),
-            action = foo.bar.clean.ui.actionhandlers.Act.Global.ToSettingsScreen,
+            action = Act.Global.ToSettingsScreen,
             enabled = currentLocation !is Location.SettingsLocations,
         ),
     )
@@ -473,7 +473,7 @@ enum class NavigationItemType {
 }
 
 @Composable
-fun FavNavigationItem(
+fun favNavigationItem(
     favouritesState: FavouritesState,
     feature: Feature,
 ): NavigationItem {

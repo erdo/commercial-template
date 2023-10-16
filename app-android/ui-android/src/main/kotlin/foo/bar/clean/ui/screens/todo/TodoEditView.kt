@@ -24,8 +24,8 @@ import co.early.fore.kt.core.delegate.Fore
 import co.early.fore.ui.size.LocalWindowSize
 import co.early.fore.ui.size.WindowSize
 import foo.bar.clean.domain.services.db.TodoItem
-import foo.bar.clean.ui.actionhandlers.Act
 import foo.bar.clean.ui.R
+import foo.bar.clean.ui.actionhandlers.Act
 import foo.bar.clean.ui.common.components.elements.Btn
 import foo.bar.clean.ui.common.components.elements.BtnSpec
 import foo.bar.clean.ui.common.components.elements.SH3
@@ -34,7 +34,7 @@ import foo.bar.clean.ui.common.components.elements.Txt
 @Composable
 fun TodoEditView(
     todoItem: TodoItem?,
-    perform: (foo.bar.clean.ui.actionhandlers.Act) -> Unit = {},
+    perform: (Act) -> Unit = {},
     size: WindowSize = LocalWindowSize.current,
 ) {
 
@@ -56,7 +56,7 @@ fun TodoEditView(
             if (todoItem != null) {
 
                 val focusRequester = remember { FocusRequester() }
-                LaunchedEffect(Unit){
+                LaunchedEffect(Unit) {
                     focusRequester.requestFocus()
                 }
 
@@ -79,7 +79,7 @@ fun TodoEditView(
                 label = stringResource(id = R.string.btn_update),
                 clicked = {
                     todoItem?.let {
-                        perform(foo.bar.clean.ui.actionhandlers.Act.ScreenTodo.UpdateThenBack(it.copy(label = text)))
+                        perform(Act.ScreenTodo.UpdateThenBack(it.copy(label = text)))
                     }
                 },
             ),
@@ -90,7 +90,7 @@ fun TodoEditView(
         Btn(
             spec = BtnSpec(
                 label = stringResource(id = R.string.btn_cancel),
-                clicked = { perform(foo.bar.clean.ui.actionhandlers.Act.Global.Back) }
+                clicked = { perform(Act.Global.Back) }
             ),
             modifier = Modifier.align(BottomStart),
         )

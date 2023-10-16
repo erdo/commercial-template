@@ -1,12 +1,11 @@
 package foo.bar.clean.ui.actionhandlers.screens
 
 import co.early.fore.kt.core.delegate.Fore
-import foo.bar.clean.domain.features.navigation.Location
-import foo.bar.clean.domain.features.navigation.NavigationModel
 import foo.bar.clean.domain.features.ticket.TicketModel
 import foo.bar.clean.ui.actionhandlers.Act
 import foo.bar.clean.ui.actionhandlers.GlobalActionHandler
 import foo.bar.clean.ui.actionhandlers.koinInject
+
 class ActionHandlerTicketScreen(
     private val ticketModel: TicketModel = koinInject(),
 ) : GlobalActionHandler<Act.ScreenTicket>() {

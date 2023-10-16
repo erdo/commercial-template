@@ -38,7 +38,7 @@ fun Txt(
 sealed class TextSpec(
     val fontWeight: FontWeight = FontWeight.Normal,
     factor: Float,
-    size: WindowSize
+    size: WindowSize,
 ) {
 
     val fontSize: TextUnit = (size.dpSize.minimumDimension() / factor).value.sp

@@ -6,7 +6,7 @@ import org.koin.compose.koinInject
 
 @Composable
 fun SetColorScreen(
-    actionHandler: foo.bar.clean.ui.actionhandlers.screens.ActionHandlerSettingsScreen = koinInject(),
+    actionHandler: ActionHandlerSettingsScreen = koinInject(),
 ) {
 
     SetColorView(

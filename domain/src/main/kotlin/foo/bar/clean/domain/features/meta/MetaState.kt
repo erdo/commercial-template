@@ -1,10 +1,10 @@
 package foo.bar.clean.domain.features.meta
 
 import foo.bar.clean.domain.DomainError
-import foo.bar.clean.domain.services.device.Meta
 import foo.bar.clean.domain.features.CanError
 import foo.bar.clean.domain.features.CanLoad
 import foo.bar.clean.domain.features.State
+import foo.bar.clean.domain.services.device.Meta
 import kotlinx.serialization.Transient
 
 /**

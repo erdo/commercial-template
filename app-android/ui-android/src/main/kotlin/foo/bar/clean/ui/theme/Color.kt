@@ -5,7 +5,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.lerp
 
 data class AppColors(
-    val dark:Boolean,
+    val dark: Boolean,
     /**
      * For DARK mode, this is usually a dark color
      */
@@ -71,7 +71,7 @@ data class AppColors(
      * shadow caused by elevation
      */
     val scrimShadow: Color = Color.Black,
-    val loadingShadow: Color = lerp(Color.Transparent, Color.White,0.50f),
+    val loadingShadow: Color = lerp(Color.Transparent, Color.White, 0.50f),
     /**
      * switch background when turned off
      */

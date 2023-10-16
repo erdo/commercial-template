@@ -5,7 +5,7 @@ import android.app.Application.ActivityLifecycleCallbacks
 import android.os.Bundle
 
 class ActivityLifecycleNetworkCheck(
-    private val networkMonitor: AndroidNetworkMonitor
+    private val networkMonitor: AndroidNetworkMonitor,
 ) : ActivityLifecycleCallbacks {
 
     override fun onActivityResumed(activity: Activity) {

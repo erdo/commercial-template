@@ -24,8 +24,8 @@ class AndroidNetworkMonitor(
     private val connectivityManager: ConnectivityManager,
     private val okHttpClient: OkHttpClient,
     application: Application,
-    private val logger: Logger
-): NetworkMonitorService {
+    private val logger: Logger,
+) : NetworkMonitorService {
 
     //we start by assuming we have network
     private var networkAvailable = true
@@ -59,6 +59,7 @@ class AndroidNetworkMonitor(
                         logger.i("NetworkCallback onAvailable() thread:${Thread.currentThread().id} network:$network")
                         doubleCheckConnection()
                     }
+
                     override fun onLost(network: Network) {
                         super.onLost(network)
                         logger.i("NetworkCallback onLost() thread:${Thread.currentThread().id} network:$network")
@@ -69,7 +70,7 @@ class AndroidNetworkMonitor(
         }
     }
 
-    private fun doubleCheckConnection(){
+    private fun doubleCheckConnection() {
         logger.i("doubleCheckConnection()")
         launchMain {
             val success = awaitIO {
@@ -82,7 +83,7 @@ class AndroidNetworkMonitor(
                     false
                 }
             }
-            if (success){
+            if (success) {
                 logger.i("double check network success")
                 networkAvailable = true
                 networkChangeCallback?.onAvailable()

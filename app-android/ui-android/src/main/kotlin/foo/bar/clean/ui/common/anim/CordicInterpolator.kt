@@ -16,7 +16,7 @@ const val ZERO = 0
  * work but can start to look jerky when applied to a large animation.
  */
 open class CordicInterpolator(
-    private val cordicTable: List<Int>
+    private val cordicTable: List<Int>,
 ) : Easing {
 
     init {

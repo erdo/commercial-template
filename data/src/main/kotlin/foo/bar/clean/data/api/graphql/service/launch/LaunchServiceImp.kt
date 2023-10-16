@@ -7,10 +7,10 @@ import foo.bar.clean.data.toDomain
 import foo.bar.clean.domain.DomainError
 import foo.bar.clean.domain.SLOMO
 import foo.bar.clean.domain.features.auth.AuthModel
+import foo.bar.clean.domain.features.observeUntil
 import foo.bar.clean.domain.services.api.BookingResult
 import foo.bar.clean.domain.services.api.Launch
 import foo.bar.clean.domain.services.api.LaunchService
-import foo.bar.clean.domain.features.observeUntil
 import kotlinx.coroutines.delay
 
 class LaunchServiceImp(

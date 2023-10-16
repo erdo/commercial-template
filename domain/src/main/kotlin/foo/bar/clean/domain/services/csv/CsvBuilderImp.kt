@@ -4,7 +4,7 @@ const val CSV_LINE_TERMINATOR = "\r\n"
 const val CSV_DEFAULT_DELIMITER = ","
 
 class CsvBuilder(
-    private val delimiter: String = CSV_DEFAULT_DELIMITER
+    private val delimiter: String = CSV_DEFAULT_DELIMITER,
 ) {
 
     private val stringBuffer = StringBuffer()

@@ -27,21 +27,21 @@ import co.early.fore.ui.size.LocalWindowSize
 import co.early.fore.ui.size.WindowSize
 import foo.bar.clean.domain.features.favourites.FavouritesState
 import foo.bar.clean.domain.features.favourites.Feature
-import foo.bar.clean.ui.actionhandlers.Act
 import foo.bar.clean.ui.R
+import foo.bar.clean.ui.actionhandlers.Act
 import foo.bar.clean.ui.common.components.StateWrapperView
 import foo.bar.clean.ui.common.components.ViewTemplate
 import foo.bar.clean.ui.common.components.elements.Btn
 import foo.bar.clean.ui.common.components.elements.BtnSpec
-import foo.bar.clean.ui.common.components.elements.SW2
 import foo.bar.clean.ui.common.components.elements.SH2
+import foo.bar.clean.ui.common.components.elements.SW2
 import foo.bar.clean.ui.common.components.elements.Txt
 import foo.bar.clean.ui.common.components.extraPaddingForHideUiBtn
 
 @Composable
 fun FavouritesView(
     favouritesState: FavouritesState,
-    perform: (foo.bar.clean.ui.actionhandlers.Act) -> Unit = {},
+    perform: (Act) -> Unit = {},
     size: WindowSize = LocalWindowSize.current,
 ) {
     StateWrapperView(
@@ -52,9 +52,9 @@ fun FavouritesView(
             Favourites(
                 favouritesState = favouritesState,
                 size = size,
-                clearAllBtnClicked = { perform(foo.bar.clean.ui.actionhandlers.Act.ScreenFavourites.ClearAllFavourites) },
-                clearBtnClicked = { fav -> perform(foo.bar.clean.ui.actionhandlers.Act.ScreenFavourites.ClearFavourite(fav)) },
-                addToFavouritesBtnClicked = { perform(foo.bar.clean.ui.actionhandlers.Act.Global.ToggleFavourite(feature = Feature.Favourites)) },
+                clearAllBtnClicked = { perform(Act.ScreenFavourites.ClearAllFavourites) },
+                clearBtnClicked = { fav -> perform(Act.ScreenFavourites.ClearFavourite(fav)) },
+                addToFavouritesBtnClicked = { perform(Act.Global.ToggleFavourite(feature = Feature.Favourites)) },
             )
         }
     }

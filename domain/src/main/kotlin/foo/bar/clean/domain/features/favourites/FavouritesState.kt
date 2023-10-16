@@ -10,30 +10,38 @@ data class FavouritesState(
     val favourites: List<Feature> = emptyList(),
     @Transient
     val loading: Boolean = false,
-): State {
+) : State {
     fun isFavourite(feature: Feature): Boolean = favourites.contains(feature)
 }
 
 @Serializable
 sealed class Feature {
     @Serializable
-    object Counter: Feature()
+    object Counter : Feature()
+
     @Serializable
-    object Todo: Feature()
+    object Todo : Feature()
+
     @Serializable
-    object SpaceLaunch: Feature()
+    object SpaceLaunch : Feature()
+
     @Serializable
-    object Favourites: Feature()
+    object Favourites : Feature()
+
     @Serializable
-    object Settings: Feature()
+    object Settings : Feature()
+
     @Serializable
-    object Fruit: Feature()
+    object Fruit : Feature()
+
     @Serializable
-    object Ticket: Feature()
+    object Ticket : Feature()
+
     @Serializable
-    object Weather: Feature()
+    object Weather : Feature()
+
     @Serializable
-    object Network: Feature()
+    object Network : Feature()
 
     /**
      * Just so we can visualise the state easier on the UI,

@@ -2,9 +2,9 @@ package foo.bar.clean.ui.screens.todo
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import foo.bar.clean.domain.features.ReadableState
 import foo.bar.clean.domain.features.todo.TodoModel
 import foo.bar.clean.domain.features.todo.TodoState
-import foo.bar.clean.domain.features.ReadableState
 import foo.bar.clean.ui.actionhandlers.screens.ActionHandlerTodoScreen
 import foo.bar.clean.ui.common.toState
 import org.koin.compose.koinInject

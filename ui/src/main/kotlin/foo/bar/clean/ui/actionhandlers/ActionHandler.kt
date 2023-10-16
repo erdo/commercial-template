@@ -2,7 +2,7 @@ package foo.bar.clean.ui.actionhandlers
 
 import co.early.fore.kt.core.delegate.Fore
 
-abstract class ActionHandler<T: Act> : ActHandler<T> {
+abstract class ActionHandler<T : Act> : ActHandler<T> {
     override fun handle(act: Act) {
         try {
             val subAct = act as? T
@@ -14,10 +14,11 @@ abstract class ActionHandler<T: Act> : ActHandler<T> {
                     __handle(act)
                 }
             }
-        } catch(cce: java.lang.ClassCastException){
+        } catch (cce: java.lang.ClassCastException) {
             Fore.e("Unexpected Action type, is the Screen correct?: $act")
         }
     }
+
     protected abstract fun _handle(act: Act.Global)
     protected abstract fun __handle(act: T)
 }

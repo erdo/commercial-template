@@ -4,12 +4,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import foo.bar.clean.domain.DomainError
+import foo.bar.clean.domain.features.ReadableState
+import foo.bar.clean.domain.features.State
 import foo.bar.clean.domain.features.auth.AuthModel
 import foo.bar.clean.domain.features.auth.AuthState
 import foo.bar.clean.domain.features.spacelaunch.SpaceDetailModel
 import foo.bar.clean.domain.features.spacelaunch.SpaceDetailState
-import foo.bar.clean.domain.features.ReadableState
-import foo.bar.clean.domain.features.State
 import foo.bar.clean.ui.actionhandlers.Act
 import foo.bar.clean.ui.actionhandlers.screens.ActionHandlerSpaceLaunchScreen
 import foo.bar.clean.ui.common.toState
@@ -46,7 +46,8 @@ data class SpaceDetailViewState(
     val spaceDetailState: SpaceDetailState = SpaceDetailState(),
     val auth: AuthState = AuthState(),
 ) : State {
-    val error = if (spaceDetailState.error != DomainError.NoError) spaceDetailState.error else auth.error
+    val error =
+        if (spaceDetailState.error != DomainError.NoError) spaceDetailState.error else auth.error
     val loading = spaceDetailState.loading || auth.loading
     val btnFetchEnabled = !loading
     val btnSignOutEnabled = !loading && auth.signedIn

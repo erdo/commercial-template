@@ -28,7 +28,6 @@ import foo.bar.clean.ui.common.components.AnimatedLinearProgressIndicator
 import foo.bar.clean.ui.common.components.elements.BtnSpec
 import foo.bar.clean.ui.common.components.elements.BtnType
 import foo.bar.clean.ui.common.mapToUserMessage
-import foo.bar.clean.ui.theme.AppTheme
 import foo.bar.clean.ui.theme.LocalAppColors
 import kotlinx.coroutines.delay
 
@@ -87,7 +86,7 @@ fun SplashError(
 
 @Composable
 fun Background(
-    content: @Composable () -> Unit
+    content: @Composable () -> Unit,
 ) {
     Column(
         modifier = Modifier

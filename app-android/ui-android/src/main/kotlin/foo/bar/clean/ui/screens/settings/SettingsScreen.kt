@@ -2,19 +2,19 @@ package foo.bar.clean.ui.screens.settings
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import foo.bar.clean.domain.features.settings.SettingsModel
-import foo.bar.clean.domain.features.settings.SettingsState
 import foo.bar.clean.domain.features.ReadableState
 import foo.bar.clean.domain.features.State
+import foo.bar.clean.domain.features.settings.SettingsModel
+import foo.bar.clean.domain.features.settings.SettingsState
 import foo.bar.clean.ui.actionhandlers.screens.ActionHandlerSettingsScreen
 import foo.bar.clean.ui.common.toState
 import org.koin.compose.koinInject
 
 @Composable
 fun SettingsScreen(
-    color:ULong? = null,
+    color: ULong? = null,
     settingsStateProvider: ReadableState<SettingsState> = (koinInject() as SettingsModel),
-    actionHandler: ActionHandlerSettingsScreen = koinInject()
+    actionHandler: ActionHandlerSettingsScreen = koinInject(),
 ) {
 
     val settingsState by settingsStateProvider.toState()
@@ -31,6 +31,6 @@ fun SettingsScreen(
  * source of truth is still the models in the domain layer
  */
 data class SettingsViewState(
-    val color:ULong? = null,
+    val color: ULong? = null,
     val settingsState: SettingsState = SettingsState(),
 ) : State

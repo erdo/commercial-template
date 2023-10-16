@@ -1,8 +1,8 @@
 package foo.bar.clean.domain.features.spacelaunch
 
 import foo.bar.clean.domain.DomainError
-import foo.bar.clean.domain.services.api.Launch
 import foo.bar.clean.domain.features.State
+import foo.bar.clean.domain.services.api.Launch
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.Transient
 

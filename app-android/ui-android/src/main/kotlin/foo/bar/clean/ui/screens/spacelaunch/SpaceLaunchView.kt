@@ -47,7 +47,7 @@ import foo.bar.clean.ui.theme.LocalAppColors
 @Composable
 fun SpaceLaunchView(
     viewState: SpaceLaunchViewState,
-    perform: (foo.bar.clean.ui.actionhandlers.Act) -> Unit = {},
+    perform: (Act) -> Unit = {},
     size: WindowSize = LocalWindowSize.current,
 ) {
     StateWrapperView(
@@ -57,10 +57,10 @@ fun SpaceLaunchView(
         ViewTemplate(modifier = Modifier.fillMaxSize()) {
             SpaceLaunchList(
                 viewState = viewState,
-                refreshLaunches = { perform(foo.bar.clean.ui.actionhandlers.Act.ScreenSpaceLaunch.RefreshLaunches) },
-                selectLaunch = { id -> perform(foo.bar.clean.ui.actionhandlers.Act.ScreenSpaceLaunch.SelectLaunch(id)) },
-                clearError = { perform(foo.bar.clean.ui.actionhandlers.Act.ScreenSpaceLaunch.ClearErrors) },
-                clearData = { perform(foo.bar.clean.ui.actionhandlers.Act.ScreenSpaceLaunch.ClearData) },
+                refreshLaunches = { perform(Act.ScreenSpaceLaunch.RefreshLaunches) },
+                selectLaunch = { id -> perform(Act.ScreenSpaceLaunch.SelectLaunch(id)) },
+                clearError = { perform(Act.ScreenSpaceLaunch.ClearErrors) },
+                clearData = { perform(Act.ScreenSpaceLaunch.ClearData) },
             )
         }
     }

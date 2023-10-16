@@ -15,7 +15,7 @@ data class CounterState(
     val min: Int,
     @Transient
     val loading: Boolean = false,
-): State {
+) : State {
     fun canIncrease(): Boolean = !loading && amount < max
     fun canDecrease(): Boolean = !loading && amount > min
 }

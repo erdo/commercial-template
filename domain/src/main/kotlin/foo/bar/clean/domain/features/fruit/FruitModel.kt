@@ -6,9 +6,9 @@ import co.early.fore.kt.core.delegate.Fore
 import co.early.fore.kt.core.observer.ObservableImp
 import co.early.fore.kt.core.type.Either
 import foo.bar.clean.domain.DomainError
+import foo.bar.clean.domain.features.ReadableState
 import foo.bar.clean.domain.services.api.Fruit
 import foo.bar.clean.domain.services.api.FruitService
-import foo.bar.clean.domain.features.ReadableState
 
 /**
  * This is a basic observable model that publishes a "Fruit" state, this state is mutated (the

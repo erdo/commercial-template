@@ -14,13 +14,13 @@ import androidx.compose.ui.res.stringResource
 import co.early.fore.compose.observeAsState
 import co.early.fore.kt.core.delegate.Fore
 import foo.bar.clean.domain.DomainError
+import foo.bar.clean.domain.features.ReadableState
 import foo.bar.clean.domain.features.init.InitModel
 import foo.bar.clean.domain.features.init.InitState
 import foo.bar.clean.domain.features.init.Step
-import foo.bar.clean.domain.features.ReadableState
+import foo.bar.clean.ui.R
 import foo.bar.clean.ui.actionhandlers.Act
 import foo.bar.clean.ui.actionhandlers.screens.ActionHandlerSplashScreen
-import foo.bar.clean.ui.R
 import kotlinx.coroutines.delay
 import org.koin.compose.koinInject
 
@@ -32,7 +32,7 @@ import org.koin.compose.koinInject
 fun Activity.SplashScreen(
     initStateProvider: ReadableState<InitState> = (koinInject() as InitModel),
     actionHandler: ActionHandlerSplashScreen = koinInject(),
-    content: @Composable () -> Unit
+    content: @Composable () -> Unit,
 ) {
 
     val initModelState by initStateProvider.observeAsState { initStateProvider.state }
@@ -67,6 +67,7 @@ fun Activity.SplashScreen(
                     }
                 }
             }
+
             is Step.Error -> SplashError(
                 title = stringResource(id = R.string.hmm),
                 error = step.domainError,
@@ -76,6 +77,7 @@ fun Activity.SplashScreen(
                     }
                 },
             )
+
             Step.Uninitialised -> {
                 /** no op, the init model should be kicked off by the application class **/
             }

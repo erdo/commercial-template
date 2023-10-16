@@ -2,9 +2,9 @@ package foo.bar.clean.di.data
 
 import co.early.fore.kt.net.InterceptorLogging
 import co.early.fore.kt.net.ktor.CallWrapperKtor
-import foo.bar.clean.data.api.rest.KtorBuilder
 import foo.bar.clean.data.api.rest.ErrorHandlerRest
 import foo.bar.clean.data.api.rest.InterceptorCommonRest
+import foo.bar.clean.data.api.rest.KtorBuilder
 import foo.bar.clean.data.api.rest.service.config.ConfigApi
 import foo.bar.clean.data.api.rest.service.endpoints.EndpointsApi
 import foo.bar.clean.data.api.rest.service.featureflags.FeatureFlagsApi
@@ -40,31 +40,31 @@ val dataRest = module {
      * Data Sources
      */
 
-    single{
+    single {
         PhoneHomeApi(httpClient = get())
     }
 
-    single{
+    single {
         EndpointsApi(httpClient = get())
     }
 
-    single{
+    single {
         ConfigApi(httpClient = get(), endpoints = get())
     }
 
-    single{
+    single {
         FeatureFlagsApi(httpClient = get(), endpoints = get())
     }
 
-    single{
+    single {
         FruitApi(httpClient = get(), endpoints = get())
     }
 
-    single{
+    single {
         TicketApi(httpClient = get(), endpoints = get())
     }
 
-    single{
+    single {
         WeatherApi(httpClient = get(), endpoints = get())
     }
 }

@@ -47,8 +47,8 @@ import foo.bar.clean.domain.features.network.Availability.Available
 import foo.bar.clean.domain.features.ticket.Status
 import foo.bar.clean.domain.features.ticket.Step
 import foo.bar.clean.domain.services.api.Fruit
-import foo.bar.clean.ui.actionhandlers.Act
 import foo.bar.clean.ui.R
+import foo.bar.clean.ui.actionhandlers.Act
 import foo.bar.clean.ui.common.components.AlertOneButton
 import foo.bar.clean.ui.common.components.StateWrapperView
 import foo.bar.clean.ui.common.components.ViewTemplate
@@ -70,7 +70,7 @@ import kotlinx.coroutines.launch
 @Composable
 fun TicketView(
     ticketViewState: TicketViewState,
-    perform: (foo.bar.clean.ui.actionhandlers.Act) -> Unit = {},
+    perform: (Act) -> Unit = {},
     size: WindowSize = LocalWindowSize.current,
 ) {
     StateWrapperView(
@@ -81,9 +81,9 @@ fun TicketView(
             Ticket(
                 viewState = ticketViewState,
                 size = size,
-                clearBtnClicked = { perform(foo.bar.clean.ui.actionhandlers.Act.ScreenTicket.ClearData) },
-                clearErrorBtnClicked = { perform(foo.bar.clean.ui.actionhandlers.Act.ScreenTicket.ClearError) },
-                fetchTicketBtnClicked = { perform(foo.bar.clean.ui.actionhandlers.Act.ScreenTicket.RequestTicket) },
+                clearBtnClicked = { perform(Act.ScreenTicket.ClearData) },
+                clearErrorBtnClicked = { perform(Act.ScreenTicket.ClearError) },
+                fetchTicketBtnClicked = { perform(Act.ScreenTicket.RequestTicket) },
             )
         }
     }

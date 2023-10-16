@@ -12,9 +12,9 @@ import foo.bar.clean.ui.actionhandlers.ActionHandler
  * layout for the bottom navigation bar
  */
 @Composable
-fun <T : foo.bar.clean.ui.actionhandlers.Act> BottomNavBar(
+fun <T : Act> BottomNavBar(
     bottomBarItems: List<NavigationItem>,
-    userActionHandler: foo.bar.clean.ui.actionhandlers.ActionHandler<T>,
+    userActionHandler: ActionHandler<T>,
 ) {
     if (bottomBarItems.isNotEmpty()) {
         NavigationBar {

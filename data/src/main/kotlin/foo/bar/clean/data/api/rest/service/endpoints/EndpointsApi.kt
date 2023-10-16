@@ -18,7 +18,9 @@ class EndpointsApi(
     private val httpClient: HttpClient,
 ) {
 
-    private val delay = if (SLOMO) { "/?mocky-delay=500ms" } else ""
+    private val delay = if (SLOMO) {
+        "/?mocky-delay=500ms"
+    } else ""
 
     // endpoints "https://run.mocky.io/v3/527b8f12-138e-431e-b7de-6698e8c6b32f",
     suspend fun fetchEndpoints(url: String): EndpointsPojo {

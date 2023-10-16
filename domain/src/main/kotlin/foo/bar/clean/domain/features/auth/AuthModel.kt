@@ -7,8 +7,8 @@ import co.early.fore.kt.core.observer.ObservableImp
 import co.early.fore.kt.core.type.Either.Fail
 import co.early.fore.kt.core.type.Either.Success
 import foo.bar.clean.domain.DomainError
-import foo.bar.clean.domain.services.api.AuthService
 import foo.bar.clean.domain.features.ReadableState
+import foo.bar.clean.domain.services.api.AuthService
 
 
 /**
@@ -46,11 +46,12 @@ class AuthModel(
         notifyObservers()
 
         launchMain {
-            when ( val result = authService.login(email)) {
+            when (val result = authService.login(email)) {
                 is Success -> {
                     state = AuthState(token = result.value.token ?: NO_SESSION)
                     notifyObservers()
                 }
+
                 is Fail -> {
                     state = AuthState(error = result.value)
                     notifyObservers()

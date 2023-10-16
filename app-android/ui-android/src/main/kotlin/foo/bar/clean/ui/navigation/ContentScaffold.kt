@@ -22,14 +22,14 @@ import foo.bar.clean.ui.actionhandlers.ActionHandler
  */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun <T : foo.bar.clean.ui.actionhandlers.Act> ContentScaffold(
+fun <T : Act> ContentScaffold(
     size: WindowSize = LocalWindowSize.current,
     bottomBarItems: List<NavigationItem> = emptyList(),
     title: String,
     mainContent: @Composable (PaddingValues) -> Unit,
     startDrawerOpenRequested: () -> Unit,
     actionItems: List<NavigationItem> = emptyList(),
-    userActionHandler: foo.bar.clean.ui.actionhandlers.ActionHandler<T>
+    userActionHandler: ActionHandler<T>,
 ) {
 
     Fore.i("ContentScaffold()")

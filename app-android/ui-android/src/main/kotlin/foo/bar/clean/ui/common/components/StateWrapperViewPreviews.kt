@@ -40,6 +40,10 @@ import foo.bar.clean.ui.common.PreviewWithWindowSize
 @Composable
 fun MyPreviews() {
     PreviewWithWindowSize {
-        StateWrapperView(state = CounterState(3, max = 0, min = 9), size = it, uiIsVisibleDefault = false) {}
+        StateWrapperView(
+            state = CounterState(3, max = 0, min = 9),
+            size = it,
+            uiIsVisibleDefault = false
+        ) {}
     }
 }

@@ -17,7 +17,8 @@ sealed class Fruit {
         val isCitrus: Boolean = false,
         val tastyPercentScore: Int = 50,
     ) : Fruit()
-    object FruitNone: Fruit()
+
+    object FruitNone : Fruit()
 
     /**
      * Just so we can visualise the state easier on the UI,

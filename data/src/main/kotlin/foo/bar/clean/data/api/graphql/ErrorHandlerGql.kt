@@ -20,7 +20,7 @@ class ErrorHandlerGql(private val logger: Logger? = null) : ErrorHandler<DataErr
 
     override fun handleError(
         t: Throwable?,
-        errorResponse: ApolloResponse<*>?
+        errorResponse: ApolloResponse<*>?,
     ): DataError {
 
         Fore.getLogger(logger).e("handleError() t:$t errorResponse:$errorResponse")
@@ -59,6 +59,7 @@ class ErrorHandlerGql(private val logger: Logger? = null) : ErrorHandler<DataErr
                         else -> DataError.Misc
                     }
                 }
+
                 else -> DataError.Misc
             }
         } ?: DataError.Misc

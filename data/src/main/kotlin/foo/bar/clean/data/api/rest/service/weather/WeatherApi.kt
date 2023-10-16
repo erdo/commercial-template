@@ -52,7 +52,7 @@ class WeatherApi(
 
 @Serializable
 data class PollenPojo(
-    var level: Level = Level.UNKNOWN
+    var level: Level = Level.UNKNOWN,
 )
 
 @Serializable

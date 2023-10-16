@@ -15,7 +15,7 @@ import foo.bar.clean.ui.theme.LocalAppColors
 fun Btn(
     spec: BtnSpec,
     modifier: Modifier = Modifier,
-    enabled:Boolean = true,
+    enabled: Boolean = true,
     size: WindowSize = LocalWindowSize.current,
 ) {
 

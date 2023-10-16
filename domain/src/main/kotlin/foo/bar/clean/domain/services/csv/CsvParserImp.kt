@@ -4,7 +4,7 @@ import java.util.StringTokenizer
 
 class CsvParser(
     csvData: String,
-    delimiter: String = CSV_DEFAULT_DELIMITER
+    delimiter: String = CSV_DEFAULT_DELIMITER,
 ) : Iterable<CsvParser.Line> {
 
     private val lines: MutableList<Line> = ArrayList()
@@ -31,7 +31,7 @@ class CsvParser(
 
     class Line(
         line: String,
-        delimiter: String
+        delimiter: String,
     ) : Iterable<String> {
 
         private val columns: MutableList<String> = ArrayList()

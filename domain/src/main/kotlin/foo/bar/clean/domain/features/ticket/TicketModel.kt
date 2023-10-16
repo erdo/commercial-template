@@ -8,10 +8,10 @@ import co.early.fore.kt.core.type.Either
 import co.early.fore.kt.core.type.carryOn
 import foo.bar.clean.domain.DomainError
 import foo.bar.clean.domain.SLOMO
+import foo.bar.clean.domain.features.ReadableState
 import foo.bar.clean.domain.services.api.Fruit
 import foo.bar.clean.domain.services.api.FruitService
 import foo.bar.clean.domain.services.api.TicketService
-import foo.bar.clean.domain.features.ReadableState
 import kotlinx.coroutines.delay
 
 /**
@@ -132,16 +132,16 @@ class TicketModel(
         notifyObservers()
     }
 
-    private suspend fun startStep(step: Step){
+    private suspend fun startStep(step: Step) {
 
         Fore.i("...step:$step t:" + Thread.currentThread())
 
-        if (SLOMO){
+        if (SLOMO) {
             delay(1000)
         }
 
         state = state.copy(
-            progress = state.progress.map{ stepAndStatus ->
+            progress = state.progress.map { stepAndStatus ->
                 if (stepAndStatus.second == Status.InProgress) {
                     stepAndStatus.first to Status.Done
                 } else if (stepAndStatus.first == step) {
@@ -154,14 +154,14 @@ class TicketModel(
         notifyObservers()
     }
 
-    private suspend fun failCurrentStep(){
+    private suspend fun failCurrentStep() {
 
-        if (SLOMO){
+        if (SLOMO) {
             delay(1000)
         }
 
         state = state.copy(
-            progress = state.progress.map{ stepAndStatus ->
+            progress = state.progress.map { stepAndStatus ->
                 if (stepAndStatus.second == Status.InProgress) {
                     stepAndStatus.first to Status.Failed
                 } else {
@@ -174,7 +174,7 @@ class TicketModel(
 }
 
 fun <F, S, S2> Either<F, S>.mapSuccess(
-    block: (S) -> S2
+    block: (S) -> S2,
 ): Either<F, S2> {
     return when (this) {
         is Either.Fail -> Either.fail(this.value)

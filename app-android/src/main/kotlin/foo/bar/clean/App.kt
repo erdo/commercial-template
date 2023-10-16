@@ -9,10 +9,10 @@ import foo.bar.clean.di.data.dataDevice
 import foo.bar.clean.di.data.dataGraphQL
 import foo.bar.clean.di.data.dataMisc
 import foo.bar.clean.di.data.dataRest
+import foo.bar.clean.di.domain.domainActionHandlers
 import foo.bar.clean.di.domain.domainModels
 import foo.bar.clean.di.domain.domainPersistence
 import foo.bar.clean.di.domain.domainServices
-import foo.bar.clean.di.domain.domainActionHandlers
 import foo.bar.clean.domain.features.init.InitModel
 import org.koin.android.ext.android.get
 import org.koin.android.ext.koin.androidContext
@@ -39,7 +39,7 @@ class App : MultiDexApplication() {
             if (BuildConfig.DEBUG) {
                 // Use Koin Android Logger
                 androidLogger()
-             }
+            }
             // declare Android context
             androidContext(this@App)
             // declare modules to use

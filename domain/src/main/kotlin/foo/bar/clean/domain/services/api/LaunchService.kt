@@ -20,9 +20,10 @@ sealed class Launch {
         val isBooked: Boolean = false,
         val patchThumbImgUrl: String = "",
         val patchImgUrl: String = "",
-    ): Launch()
+    ) : Launch()
+
     @Serializable
-    data object NoLaunch: Launch()
+    data object NoLaunch : Launch()
 }
 
 data class BookingResult(

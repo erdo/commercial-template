@@ -7,8 +7,8 @@ import co.early.fore.kt.core.observer.ObservableImp
 import co.early.fore.kt.core.type.Either
 import co.early.persista.PerSista
 import foo.bar.clean.domain.DomainError
-import foo.bar.clean.domain.services.api.ConfigService
 import foo.bar.clean.domain.features.ReadableStateCanLoadCanError
+import foo.bar.clean.domain.services.api.ConfigService
 
 /**
  * This is an observable model that tries to fetch its data from a service, if the service
@@ -32,7 +32,7 @@ class ConfigModel(
 
         Fore.i("load()")
 
-        if (state.loading){
+        if (state.loading) {
             return
         }
 

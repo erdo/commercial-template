@@ -1,8 +1,8 @@
 package foo.bar.clean.domain.features.navigation
 
-import foo.bar.clean.domain.services.api.Fruit
 import foo.bar.clean.domain.features.CanLoad
 import foo.bar.clean.domain.features.State
+import foo.bar.clean.domain.services.api.Fruit
 import kotlinx.serialization.Serializable
 
 @Serializable
@@ -35,8 +35,10 @@ sealed class Location {
     sealed class TodoLocations : Location() {
         @Serializable
         data object TodoLocation : TodoLocations()
+
         @Serializable
         data object TodoAddLocation : TodoLocations()
+
         @Serializable
         data class TodoEditLocation(val index: Int) : TodoLocations()
     }
@@ -45,6 +47,7 @@ sealed class Location {
     sealed class SpaceLaunchLocations : Location() {
         @Serializable
         data object SpaceLaunchLocation : SpaceLaunchLocations()
+
         @Serializable
         data class SpaceDetailLocation(val id: String) : SpaceLaunchLocations()
     }
@@ -59,6 +62,7 @@ sealed class Location {
     sealed class SettingsLocations : Location() {
         @Serializable
         data class SettingsLocation(val color: ULong? = null) : SettingsLocations()
+
         @Serializable
         data object SetColor : SettingsLocations()
     }

@@ -11,7 +11,6 @@ import io.mockk.verify
 import junit.framework.Assert.assertEquals
 import org.junit.Assert
 import org.junit.Assert.assertNotEquals
-import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
 import org.junit.rules.TemporaryFolder
@@ -58,14 +57,14 @@ class NavModelTest {
 
         // act
         navigationModel.navigateTo(Location.FavouritesLocation)
-        navigationModel.navigateTo(Location.NetworkLocation)
-        navigationModel.navigateTo(Location.TicketLocation())
+        navigationModel.navigateTo(Location.SpaceLaunchLocations.SpaceLaunchLocation)
+        navigationModel.navigateTo(Location.TicketLocation)
         Fore.i(navigationModel.toString())
 
         // assert
         assertEquals(false, navigationModel.state.loading)
         assertEquals(4, navigationModel.state.backStack.size)
-        assertEquals(Location.TicketLocation(), navigationModel.state.currentPage())
+        assertEquals(Location.TicketLocation, navigationModel.state.currentPage())
     }
 
     @Test
@@ -76,17 +75,17 @@ class NavModelTest {
 
         // act
         navigationModel.navigateTo(Location.FavouritesLocation, false)
-        navigationModel.navigateTo(Location.NetworkLocation)
-        navigationModel.navigateTo(Location.TicketLocation(), false)
+        navigationModel.navigateTo(Location.SpaceLaunchLocations.SpaceLaunchLocation)
+        navigationModel.navigateTo(Location.TicketLocation, false)
         navigationModel.navigateTo(Location.CounterLocation, false)
-        navigationModel.navigateTo(Location.WeatherLocation())
+        navigationModel.navigateTo(Location.TodoLocations.TodoLocation)
         Fore.i(navigationModel.toString())
 
         // assert
         assertEquals(false, navigationModel.state.loading)
         assertEquals(3, navigationModel.state.backStack.size)
-        assertEquals(Location.WeatherLocation(), navigationModel.state.currentPage())
-        assertEquals(Location.NetworkLocation, navigationModel.state.backStack[1])
+        assertEquals(Location.TodoLocations.TodoLocation, navigationModel.state.currentPage())
+        assertEquals(Location.SpaceLaunchLocations.SpaceLaunchLocation, navigationModel.state.backStack[1])
     }
 
     @Test
@@ -97,10 +96,10 @@ class NavModelTest {
 
         // act
         navigationModel.navigateTo(Location.FavouritesLocation)
-        navigationModel.navigateTo(Location.TicketLocation(), false)
+        navigationModel.navigateTo(Location.TicketLocation, false)
         navigationModel.popBackStack()
-        navigationModel.navigateTo(Location.WeatherLocation())
-        navigationModel.navigateTo(Location.NetworkLocation)
+        navigationModel.navigateTo(Location.TodoLocations.TodoLocation)
+        navigationModel.navigateTo(Location.SpaceLaunchLocations.SpaceLaunchLocation)
         Fore.i(navigationModel.toString())
 
         // assert
@@ -117,10 +116,10 @@ class NavModelTest {
 
         // act
         navigationModel.navigateTo(Location.FavouritesLocation)
-        navigationModel.navigateTo(Location.TicketLocation(), false)
+        navigationModel.navigateTo(Location.TicketLocation, false)
         navigationModel.navigateBackTo(Location.FavouritesLocation)
-        navigationModel.navigateTo(Location.WeatherLocation())
-        navigationModel.navigateTo(Location.NetworkLocation)
+        navigationModel.navigateTo(Location.TodoLocations.TodoLocation)
+        navigationModel.navigateTo(Location.SpaceLaunchLocations.SpaceLaunchLocation)
         Fore.i(navigationModel.toString())
 
         // assert
@@ -137,16 +136,16 @@ class NavModelTest {
 
         // act
         navigationModel.navigateTo(Location.FavouritesLocation)
-        navigationModel.navigateTo(Location.TicketLocation(), false)
-        navigationModel.navigateBackTo(Location.TicketLocation(99))
-        navigationModel.navigateTo(Location.WeatherLocation())
-        navigationModel.navigateTo(Location.NetworkLocation)
+        navigationModel.navigateTo(Location.TicketLocation, false)
+        navigationModel.navigateBackTo(Location.TicketLocation)
+        navigationModel.navigateBackTo(Location.SpaceLaunchLocations.SpaceDetailLocation("99"))
+        navigationModel.navigateTo(Location.SpaceLaunchLocations.SpaceLaunchLocation)
         Fore.i(navigationModel.toString())
 
         // assert
         assertEquals(false, navigationModel.state.loading)
         assertEquals(5, navigationModel.state.backStack.size)
-        assertEquals(Location.TicketLocation(99), navigationModel.state.backStack[2])
+        assertEquals(Location.SpaceLaunchLocations.SpaceDetailLocation("99"), navigationModel.state.backStack[3])
     }
 
     @Test
@@ -157,11 +156,11 @@ class NavModelTest {
 
         // act
         navigationModel.navigateTo(Location.FavouritesLocation)
-        navigationModel.navigateTo(Location.TicketLocation(), false)
+        navigationModel.navigateTo(Location.TicketLocation, false)
         navigationModel.updateBackStack(
             listOf(
-                Location.WeatherLocation(),
-                Location.NetworkLocation,
+                Location.TodoLocations.TodoLocation,
+                Location.SpaceLaunchLocations.SpaceLaunchLocation,
             )
         )
         navigationModel.navigateTo(Location.CounterLocation)
@@ -171,10 +170,10 @@ class NavModelTest {
         // assert
         assertEquals(false, navigationModel.state.loading)
         assertEquals(4, navigationModel.state.backStack.size)
-        assertEquals(Location.NetworkLocation, navigationModel.state.backStack[1])
+        assertEquals(Location.SpaceLaunchLocations.SpaceLaunchLocation, navigationModel.state.backStack[1])
     }
 
-        @Test
+    @Test
     fun `when popBackStack is called, back stack is cleared`() {
 
         // arrange
@@ -182,8 +181,8 @@ class NavModelTest {
 
         // act
         navigationModel.navigateTo(Location.FavouritesLocation)
-        navigationModel.navigateTo(Location.NetworkLocation)
-        navigationModel.navigateTo(Location.TicketLocation())
+        navigationModel.navigateTo(Location.SpaceLaunchLocations.SpaceLaunchLocation)
+        navigationModel.navigateTo(Location.TicketLocation)
         navigationModel.popBackStack()
         navigationModel.popBackStack()
         Fore.i(navigationModel.toString())
@@ -202,9 +201,9 @@ class NavModelTest {
 
         // act
         navigationModel.navigateTo(Location.FavouritesLocation)
-        navigationModel.navigateTo(Location.NetworkLocation)
+        navigationModel.navigateTo(Location.SpaceLaunchLocations.SpaceLaunchLocation)
         navigationModel.navigateTo(Location.CounterLocation)
-        navigationModel.navigateTo(Location.TicketLocation())
+        navigationModel.navigateTo(Location.TicketLocation)
         navigationModel.popBackStack(times = 3)
         Fore.i(navigationModel.toString())
 
@@ -222,7 +221,7 @@ class NavModelTest {
 
         // act
         navigationModel.navigateTo(Location.FavouritesLocation)
-        navigationModel.navigateTo(Location.NetworkLocation)
+        navigationModel.navigateTo(Location.SpaceLaunchLocations.SpaceLaunchLocation)
         navigationModel.popBackStack(times = 5)
         Fore.i(navigationModel.toString())
 
@@ -240,8 +239,8 @@ class NavModelTest {
 
         // act
         navigationModel.navigateTo(Location.FavouritesLocation)
-        navigationModel.navigateTo(Location.NetworkLocation)
-        navigationModel.navigateTo(Location.TicketLocation())
+        navigationModel.navigateTo(Location.SpaceLaunchLocations.SpaceLaunchLocation)
+        navigationModel.navigateTo(Location.TicketLocation)
         navigationModel.navigateTo(Location.FavouritesLocation)
         Fore.i(navigationModel.toString())
 
@@ -260,9 +259,9 @@ class NavModelTest {
 
         // act
         navigationModel.navigateTo(Location.FavouritesLocation)
-        navigationModel.navigateTo(Location.NetworkLocation)
-        navigationModel.navigateTo(Location.TicketLocation())
-        navigationModel.navigateTo(Location.WeatherLocation())
+        navigationModel.navigateTo(Location.SpaceLaunchLocations.SpaceLaunchLocation)
+        navigationModel.navigateTo(Location.TicketLocation)
+        navigationModel.navigateTo(Location.TodoLocations.TodoLocation)
         navigationModel.navigateBackTo(Location.FavouritesLocation)
         Fore.i(navigationModel.toString())
 
@@ -280,9 +279,9 @@ class NavModelTest {
 
         // act
         navigationModel.navigateTo(Location.FavouritesLocation)
-        navigationModel.navigateTo(Location.NetworkLocation)
+        navigationModel.navigateTo(Location.SpaceLaunchLocations.SpaceLaunchLocation)
         navigationModel.navigateTo(Location.FavouritesLocation)
-        navigationModel.navigateTo(Location.WeatherLocation())
+        navigationModel.navigateTo(Location.TodoLocations.TodoLocation)
         navigationModel.navigateBackTo(Location.FavouritesLocation)
         Fore.i(navigationModel.toString())
 
@@ -293,7 +292,7 @@ class NavModelTest {
     }
 
     @Test
-    fun `given location is the current page, when navigating back to it, page is replaced, but history status remains the same`() {
+    fun `given location is the current page, when navigating back to it, page is replaced, and history status is updated`() {
 
         // arrange
         val navigationModel = NavigationModel(perSista)
@@ -302,8 +301,8 @@ class NavModelTest {
 
         // act
         navigationModel.navigateTo(Location.FavouritesLocation)
-        navigationModel.navigateTo(Location.NetworkLocation)
-        navigationModel.navigateTo(Location.TicketLocation())
+        navigationModel.navigateTo(Location.SpaceLaunchLocations.SpaceLaunchLocation)
+        navigationModel.navigateTo(Location.TicketLocation)
         navigationModel.navigateTo(Location.FruitLocation(noFruit))
         navigationModel.navigateBackTo(Location.FruitLocation(aFruit), addToHistory = false)
         Fore.i(navigationModel.toString())
@@ -313,7 +312,10 @@ class NavModelTest {
         assertEquals(5, navigationModel.state.backStack.size)
         assertEquals(Location.FruitLocation(aFruit), navigationModel.state.currentPage())
         assertNotEquals(Location.FruitLocation(noFruit), navigationModel.state.currentPage())
-        assertEquals(false, navigationModel.state.currentLocationWillBeAddedToHistoryOnNextNavigation)
+        assertEquals(
+            false,
+            navigationModel.state.currentLocationWillBeAddedToHistoryOnNextNavigation
+        )
     }
 
     @Test
@@ -323,9 +325,9 @@ class NavModelTest {
         val navigationModel = NavigationModel(perSista)
 
         // act
-        navigationModel.navigateTo(Location.NetworkLocation)
-        navigationModel.navigateTo(Location.TicketLocation())
-        navigationModel.navigateTo(Location.WeatherLocation())
+        navigationModel.navigateTo(Location.SpaceLaunchLocations.SpaceLaunchLocation)
+        navigationModel.navigateTo(Location.TicketLocation)
+        navigationModel.navigateTo(Location.TodoLocations.TodoLocation)
         navigationModel.navigateBackTo(Location.FavouritesLocation)
         Fore.i(navigationModel.toString())
 
@@ -344,8 +346,8 @@ class NavModelTest {
         val noFruit = Fruit.FruitNone
 
         // act
-        navigationModel.navigateTo(Location.NetworkLocation)
-        navigationModel.navigateTo(Location.TicketLocation())
+        navigationModel.navigateTo(Location.SpaceLaunchLocations.SpaceLaunchLocation)
+        navigationModel.navigateTo(Location.TicketLocation)
         navigationModel.navigateTo(Location.FruitLocation(noFruit))
         navigationModel.navigateBackTo(Location.FruitLocation(aFruit))
         Fore.i(navigationModel.toString())
@@ -369,8 +371,8 @@ class NavModelTest {
         )
 
         // act
-        navigationModel.navigateTo(Location.NetworkLocation)
-        navigationModel.navigateTo(Location.TicketLocation())
+        navigationModel.navigateTo(Location.SpaceLaunchLocations.SpaceLaunchLocation)
+        navigationModel.navigateTo(Location.TicketLocation)
         navigationModel.navigateBackTo(newHomeLocationRef)
         Fore.i(navigationModel.toString())
 
@@ -390,11 +392,11 @@ class NavModelTest {
         )
 
         // act
-        navigationModel.navigateTo(Location.NetworkLocation)
-        navigationModel.navigateTo(Location.TicketLocation())
+        navigationModel.navigateTo(Location.SpaceLaunchLocations.SpaceLaunchLocation)
+        navigationModel.navigateTo(Location.TicketLocation)
         navigationModel.updateBackStack(
             listOf(
-                Location.WeatherLocation(),
+                Location.TodoLocations.TodoLocation,
                 Location.CounterLocation,
             )
         )
@@ -416,8 +418,8 @@ class NavModelTest {
         var exception: Exception? = null
 
         // act
-        navigationModel.navigateTo(Location.NetworkLocation)
-        navigationModel.navigateTo(Location.TicketLocation())
+        navigationModel.navigateTo(Location.SpaceLaunchLocations.SpaceLaunchLocation)
+        navigationModel.navigateTo(Location.TicketLocation)
         try {
             navigationModel.updateBackStack(emptyList())
         } catch (e: Exception) {
@@ -434,20 +436,18 @@ class NavModelTest {
 
         // arrange
         val navigationModel = NavigationModel(perSista)
-        val colourToPassBack = 200
+        val colourToPassBack: ULong = 200u
 
         // act
-        navigationModel.navigateTo(Location.TicketLocation())
-        navigationModel.navigateTo(Location.NetworkLocation)
+        navigationModel.navigateTo(Location.TicketLocation)
+        navigationModel.navigateTo(Location.SettingsLocations.SettingsLocation())
+        navigationModel.navigateTo(Location.SettingsLocations.SetColor)
         navigationModel.popBackStack(
             setData = {
-                when (it){
-                    is Location.TicketLocation -> Location.TicketLocation(
-                        maxWaitTimeMin = colourToPassBack
-                    )
-                    is Location.WeatherLocation -> Location.WeatherLocation(
-                        colourInt = colourToPassBack
-                    )
+                when (it) {
+                    is Location.SettingsLocations.SettingsLocation -> {
+                        it.copy(color = colourToPassBack)
+                    }
                     else -> it
                 }
             }
@@ -455,7 +455,10 @@ class NavModelTest {
         Fore.i(navigationModel.toString())
 
         // assert
-        assertEquals(Location.TicketLocation(maxWaitTimeMin = colourToPassBack), navigationModel.state.currentPage())
+        assertEquals(
+            Location.SettingsLocations.SettingsLocation(color = colourToPassBack),
+            navigationModel.state.currentPage()
+        )
     }
 
     @Test
@@ -479,7 +482,7 @@ class NavModelTest {
         val navigationModel = NavigationModel(perSista)
 
         // act
-        navigationModel.navigateTo(Location.TicketLocation())
+        navigationModel.navigateTo(Location.TicketLocation)
         val result = navigationModel.popBackStack()
         Fore.i(navigationModel.toString())
 
@@ -511,7 +514,7 @@ class NavModelTest {
         navigationModel.addObserver(mockObserver)
 
         // act
-        navigationModel.navigateTo(Location.NetworkLocation)
+        navigationModel.navigateTo(Location.SpaceLaunchLocations.SpaceLaunchLocation)
         Fore.i(navigationModel.toString())
 
         // assert
@@ -569,22 +572,12 @@ class NavModelTest {
         navigationModel.addObserver(mockObserver)
 
         // act
-        navigationModel.updateBackStack(listOf(Location.NetworkLocation))
+        navigationModel.updateBackStack(listOf(Location.SpaceLaunchLocations.SpaceLaunchLocation))
         Fore.i(navigationModel.toString())
 
         // assert
         verify(atLeast = 1) {
             mockObserver.somethingChanged()
         }
-    }
-
-    @Test
-    fun `export navigation state to deeplink`() {
-        assertTrue(false)
-    }
-
-    @Test
-    fun `import navigation state from deeplink`() {
-        assertTrue(false)
     }
 }

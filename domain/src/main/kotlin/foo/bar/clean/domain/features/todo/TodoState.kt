@@ -1,7 +1,7 @@
 package foo.bar.clean.domain.features.todo
 
-import foo.bar.clean.domain.services.db.TodoItem
 import foo.bar.clean.domain.features.State
+import foo.bar.clean.domain.services.db.TodoItem
 import kotlinx.serialization.Serializable
 
 data class TodoState(

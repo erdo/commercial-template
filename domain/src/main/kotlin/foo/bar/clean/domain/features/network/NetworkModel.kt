@@ -3,9 +3,9 @@ package foo.bar.clean.domain.features.network
 import co.early.fore.core.observer.Observable
 import co.early.fore.kt.core.delegate.Fore
 import co.early.fore.kt.core.observer.ObservableImp
+import foo.bar.clean.domain.features.ReadableState
 import foo.bar.clean.domain.services.device.DeviceNetworkChange
 import foo.bar.clean.domain.services.device.NetworkMonitorService
-import foo.bar.clean.domain.features.ReadableState
 
 /**
  * This is a basic observable model that publishes a network available state, the state

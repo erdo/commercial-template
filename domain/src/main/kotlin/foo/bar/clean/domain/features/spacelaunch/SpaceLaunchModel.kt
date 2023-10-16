@@ -7,9 +7,9 @@ import co.early.fore.kt.core.observer.ObservableImp
 import co.early.fore.kt.core.type.Either.Fail
 import co.early.fore.kt.core.type.Either.Success
 import foo.bar.clean.domain.DomainError
+import foo.bar.clean.domain.features.ReadableState
 import foo.bar.clean.domain.services.api.Launch
 import foo.bar.clean.domain.services.api.LaunchService
-import foo.bar.clean.domain.features.ReadableState
 
 class SpaceLaunchModel(
     private val launchService: LaunchService,

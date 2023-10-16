@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.lerp
@@ -14,19 +13,18 @@ import androidx.compose.ui.res.stringResource
 import co.early.fore.kt.core.delegate.Fore
 import co.early.fore.ui.size.LocalWindowSize
 import co.early.fore.ui.size.WindowSize
-import foo.bar.clean.ui.actionhandlers.Act
 import foo.bar.clean.ui.R
+import foo.bar.clean.ui.actionhandlers.Act
 import foo.bar.clean.ui.common.components.ViewTemplate
 import foo.bar.clean.ui.common.components.elements.Btn
 import foo.bar.clean.ui.common.components.elements.BtnSpec
 import foo.bar.clean.ui.common.components.elements.BtnType
 import foo.bar.clean.ui.common.components.elements.SW1
-import foo.bar.clean.ui.common.components.extraPaddingForHideUiBtn
 import foo.bar.clean.ui.theme.LocalAppColors
 
 @Composable
 fun SetColorView(
-    perform: (foo.bar.clean.ui.actionhandlers.Act) -> Unit = {},
+    perform: (Act) -> Unit = {},
     size: WindowSize = LocalWindowSize.current,
 ) {
     ViewTemplate(
@@ -35,7 +33,7 @@ fun SetColorView(
     ) {
         SetColor(
             size = size,
-            setColor = { color -> perform(foo.bar.clean.ui.actionhandlers.Act.ScreenSettings.SetColorAndBack(color)) },
+            setColor = { color -> perform(Act.ScreenSettings.SetColorAndBack(color)) },
         )
     }
 }

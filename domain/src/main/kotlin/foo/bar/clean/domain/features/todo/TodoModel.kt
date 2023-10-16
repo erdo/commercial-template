@@ -7,9 +7,9 @@ import co.early.fore.kt.core.observer.ObservableImp
 import co.early.fore.kt.core.type.Either
 import co.early.persista.PerSista
 import foo.bar.clean.domain.SLOMO
+import foo.bar.clean.domain.features.ReadableState
 import foo.bar.clean.domain.services.db.TodoItem
 import foo.bar.clean.domain.services.db.TodoItemService
-import foo.bar.clean.domain.features.ReadableState
 import kotlinx.coroutines.delay
 
 /**
@@ -35,7 +35,7 @@ class TodoModel(
     init {
         launchMain {
 
-            if (SLOMO){
+            if (SLOMO) {
                 delay(500)
             }
 
@@ -113,7 +113,7 @@ class TodoModel(
 
         launchMain {
 
-            if (SLOMO){
+            if (SLOMO) {
                 delay(500)
             }
 

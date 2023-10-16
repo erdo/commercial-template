@@ -18,7 +18,9 @@ class FeatureFlagsApi(
     private val endpoints: Endpoints,
 ) {
 
-    private val delay = if (SLOMO) { "/?mocky-delay=500ms" } else ""
+    private val delay = if (SLOMO) {
+        "/?mocky-delay=500ms"
+    } else ""
 
     // FeatureFlags: "https://run.mocky.io/v3/9a969b95-84b9-4d72-9b61-0c7135421f5d"
     suspend fun fetchFlags(): FeatureFlagsPojo {

@@ -9,8 +9,8 @@ import co.early.fore.kt.core.type.Either.Fail
 import co.early.fore.kt.core.type.Either.Success
 import co.early.fore.kt.core.type.carryOn
 import co.early.persista.PerSista
-import foo.bar.clean.domain.services.api.WeatherService
 import foo.bar.clean.domain.features.ReadableState
+import foo.bar.clean.domain.services.api.WeatherService
 
 /**
  * The purpose of this model is to fetch a "weather report". It does this by making 3 service

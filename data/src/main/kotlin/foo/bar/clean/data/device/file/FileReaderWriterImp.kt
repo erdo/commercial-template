@@ -7,7 +7,8 @@ import co.early.fore.kt.core.logging.Logger
 import foo.bar.clean.domain.services.device.FileReaderWriter
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.asCoroutineDispatcher
-import java.io.*
+import java.io.File
+import java.io.FileNotFoundException
 import java.util.concurrent.Executors
 
 /**
@@ -19,8 +20,8 @@ class FileReaderWriterImp(
     private val subFolder: String,
     private val writeReadDispatcher: CoroutineDispatcher = Executors.newSingleThreadExecutor()
         .asCoroutineDispatcher(),
-    private val logger: Logger = Fore.getLogger()
-): FileReaderWriter {
+    private val logger: Logger = Fore.getLogger(),
+) : FileReaderWriter {
 
     init {
         getFolder().mkdirs()

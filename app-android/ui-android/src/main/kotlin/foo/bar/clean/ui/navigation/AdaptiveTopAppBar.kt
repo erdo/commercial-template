@@ -20,9 +20,9 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import co.early.fore.kt.core.delegate.Fore
 import co.early.fore.ui.size.MinDimBasedComposable
+import foo.bar.clean.ui.R
 import foo.bar.clean.ui.actionhandlers.Act
 import foo.bar.clean.ui.actionhandlers.ActionHandler
-import foo.bar.clean.ui.R
 import foo.bar.clean.ui.navigation.NavigationItemType.*
 
 /**
@@ -31,12 +31,12 @@ import foo.bar.clean.ui.navigation.NavigationItemType.*
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun <T : foo.bar.clean.ui.actionhandlers.Act> AdaptiveTopAppBar(
+fun <T : Act> AdaptiveTopAppBar(
     scrollBehavior: TopAppBarScrollBehavior,
     titleText: String,
     startDrawerOpenRequested: () -> Unit,
     actionItems: List<NavigationItem> = emptyList(),
-    userActionHandler: foo.bar.clean.ui.actionhandlers.ActionHandler<T>,
+    userActionHandler: ActionHandler<T>,
 ): MinDimBasedComposable {
 
     Fore.i("AdaptiveTopAppBar()")
@@ -82,9 +82,9 @@ fun <T : foo.bar.clean.ui.actionhandlers.Act> AdaptiveTopAppBar(
 }
 
 @Composable
-private fun <T : foo.bar.clean.ui.actionhandlers.Act> RowScope.Actions(
+private fun <T : Act> RowScope.Actions(
     actionItems: List<NavigationItem>,
-    userActionHandler: foo.bar.clean.ui.actionhandlers.ActionHandler<T>,
+    userActionHandler: ActionHandler<T>,
 ) {
     actionItems.forEach {
         when (it.type) {

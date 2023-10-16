@@ -1,11 +1,17 @@
 package foo.bar.clean.domain.features.ticket
 
 import foo.bar.clean.domain.DomainError
+import foo.bar.clean.domain.features.State
 import foo.bar.clean.domain.features.ticket.Status.Waiting
-import foo.bar.clean.domain.features.ticket.Step.*
+import foo.bar.clean.domain.features.ticket.Step.CancellingTicket
+import foo.bar.clean.domain.features.ticket.Step.ClaimingFreeFruit
+import foo.bar.clean.domain.features.ticket.Step.ConfirmingTicket
+import foo.bar.clean.domain.features.ticket.Step.CreatingTicket
+import foo.bar.clean.domain.features.ticket.Step.CreatingUser
+import foo.bar.clean.domain.features.ticket.Step.FetchingWaitingTime
+import foo.bar.clean.domain.features.ticket.Step.Initialising
 import foo.bar.clean.domain.services.api.Fruit
 import foo.bar.clean.domain.services.api.Fruit.FruitNone
-import foo.bar.clean.domain.features.State
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.Transient
 
@@ -29,31 +35,32 @@ data class TicketState(
     ),
     @Transient
     val loading: Boolean = false,
-): State {
+) : State {
     fun hasData(): Boolean {
         return this != TicketState()
     }
+
     fun waitIsTooLong(): Boolean {
-        return waitTimeMin?.let { it > maxAcceptableWaitTimeMin} ?: false
+        return waitTimeMin?.let { it > maxAcceptableWaitTimeMin } ?: false
     }
 }
 
 @Serializable
 sealed class Step {
-    data object Initialising: Step()
-    data object CreatingUser: Step()
-    data object CreatingTicket: Step()
-    data object FetchingWaitingTime: Step()
-    data object CancellingTicket: Step()
-    data object ConfirmingTicket: Step()
-    data object ClaimingFreeFruit: Step()
-    data object Complete: Step()
+    data object Initialising : Step()
+    data object CreatingUser : Step()
+    data object CreatingTicket : Step()
+    data object FetchingWaitingTime : Step()
+    data object CancellingTicket : Step()
+    data object ConfirmingTicket : Step()
+    data object ClaimingFreeFruit : Step()
+    data object Complete : Step()
 }
 
 @Serializable
 sealed class Status {
-    data object Waiting: Status()
-    data object InProgress: Status()
-    data object Done: Status()
-    data object Failed: Status()
+    data object Waiting : Status()
+    data object InProgress : Status()
+    data object Done : Status()
+    data object Failed : Status()
 }

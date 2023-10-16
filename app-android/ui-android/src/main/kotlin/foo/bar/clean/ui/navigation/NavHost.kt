@@ -7,9 +7,6 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.compositionLocalOf
 import androidx.compose.runtime.getValue
 import co.early.fore.compose.observeAsState
-import co.early.fore.ui.size.LocalWindowSize
-import co.early.fore.ui.size.WindowSize
-import co.early.fore.ui.size.rememberWindowSize
 import foo.bar.clean.domain.features.navigation.NavigationModel
 import foo.bar.clean.domain.features.navigation.NavigationState
 import org.koin.compose.koinInject
@@ -24,7 +21,7 @@ val LocalNavHost =
 @Composable
 fun Activity.NavHost(
     navigationModel: NavigationModel = koinInject(),
-    content: @Composable (NavigationState) -> Unit
+    content: @Composable (NavigationState) -> Unit,
 ) {
 
     val navigationState by navigationModel.observeAsState { navigationModel.state }

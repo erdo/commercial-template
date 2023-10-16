@@ -14,11 +14,13 @@ import foo.bar.clean.ui.common.anim.CustomEasing
 @Composable
 fun AnimatedLinearProgressIndicator(
     newProgress: Float = 0f,
-    show: Boolean = true // this lets us animate from 0 -> currentValue when show becomes true
+    show: Boolean = true, // this lets us animate from 0 -> currentValue when show becomes true
 ) {
 
     val progress by animateFloatAsState(
-        targetValue = if (show) { newProgress } else 0f,
+        targetValue = if (show) {
+            newProgress
+        } else 0f,
         animationSpec = tween(durationMillis = 300, easing = CustomEasing.straightNoChaser),
         label = "changing progress value",
     )

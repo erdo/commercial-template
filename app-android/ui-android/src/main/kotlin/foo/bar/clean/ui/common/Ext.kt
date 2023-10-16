@@ -19,6 +19,9 @@ import foo.bar.clean.domain.features.ReadableState
 import foo.bar.clean.ui.R
 import foo.bar.clean.ui.theme.AppTheme
 
+/**
+ * convenience function to convert a fore Observable into a Compose State
+ */
 @Composable
 fun <T: foo.bar.clean.domain.features.State> ReadableState<T>.toState(): State<T> = this.observeAsState { state }
 

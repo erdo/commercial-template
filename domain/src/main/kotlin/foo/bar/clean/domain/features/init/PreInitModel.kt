@@ -9,12 +9,12 @@ import co.early.fore.kt.core.type.Either.Companion.fail
 import co.early.fore.kt.core.type.carryOn
 import foo.bar.clean.domain.DomainError
 import foo.bar.clean.domain.SLOMO
+import foo.bar.clean.domain.features.ReadableStateCanLoad
 import foo.bar.clean.domain.features.meta.MetaModel
+import foo.bar.clean.domain.features.observeUntilLoaded
 import foo.bar.clean.domain.features.settings.SettingsModel
 import foo.bar.clean.domain.services.api.EndpointsService
 import foo.bar.clean.domain.services.api.PhoneHomeService
-import foo.bar.clean.domain.features.ReadableStateCanLoad
-import foo.bar.clean.domain.features.observeUntilLoaded
 import foo.bar.clean.domain.utils.version.Version
 import kotlinx.coroutines.delay
 
@@ -27,7 +27,7 @@ import kotlinx.coroutines.delay
 class PreInitModel(
     private val metaModel: MetaModel, // this gives us the current app version number
     private val phoneHomeService: PhoneHomeService, // this returns the supported versions and the URL to get the rest of the endpoints
-    private val settingsModel: SettingsModel,
+    private val settingsModel: SettingsModel, // locally stored user settings
     private val endpointsService: EndpointsService, // this returns set the endpoints used in the data layer
 ) : ReadableStateCanLoad<PreInitState>, Observable by ObservableImp() {
 
@@ -41,7 +41,7 @@ class PreInitModel(
 
         Fore.d("load")
 
-        if (state.loading){
+        if (state.loading) {
             return
         }
 
@@ -62,7 +62,7 @@ class PreInitModel(
             state = state.copy(preInitProgress = 0.4f)
             notifyObservers()
 
-           //val currentVersion = Version(metaModel.state.meta.version) // Version("1.0.0")
+            //val currentVersion = Version(metaModel.state.meta.version) // Version("1.0.0")
             val currentVersion = Version("1.0.0")
             val phoneHomeResult = phoneHomeService.phoneHome()
             Fore.d("phoneHome returned")
@@ -121,8 +121,8 @@ class PreInitModel(
         }
     }
 
-    fun acknowledgeNag(){
-        if (!state.loading && state.error == DomainError.UpgradeNag){
+    fun acknowledgeNag() {
+        if (!state.loading && state.error == DomainError.UpgradeNag) {
             state = state.copy(error = DomainError.NoError)
             notifyObservers()
         }

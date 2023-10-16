@@ -4,8 +4,8 @@ import co.early.fore.core.observer.Observable
 import co.early.fore.kt.core.coroutine.awaitMain
 import co.early.fore.kt.core.coroutine.launchIO
 import co.early.fore.kt.core.observer.ObservableImp
-import foo.bar.clean.domain.services.device.MetaService
 import foo.bar.clean.domain.features.ReadableStateCanLoad
+import foo.bar.clean.domain.services.device.MetaService
 
 /**
  * Maintains the meta data for the app for easy access (see MetaState) the data is loaded during
@@ -22,7 +22,7 @@ class MetaModel(
 
     override fun load() {
 
-        if (state.loading){
+        if (state.loading) {
             return
         }
 

@@ -3,10 +3,10 @@ package foo.bar.clean.ui.screens.spacelaunch
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
-import foo.bar.clean.domain.features.spacelaunch.SpaceLaunchModel
-import foo.bar.clean.domain.features.spacelaunch.SpaceLaunchState
 import foo.bar.clean.domain.features.ReadableState
 import foo.bar.clean.domain.features.State
+import foo.bar.clean.domain.features.spacelaunch.SpaceLaunchModel
+import foo.bar.clean.domain.features.spacelaunch.SpaceLaunchState
 import foo.bar.clean.ui.actionhandlers.Act
 import foo.bar.clean.ui.actionhandlers.screens.ActionHandlerSpaceLaunchScreen
 import foo.bar.clean.ui.common.toState
@@ -15,14 +15,14 @@ import org.koin.compose.koinInject
 @Composable
 fun SpaceLaunchScreen(
     spaceLaunchStateProvider: ReadableState<SpaceLaunchState> = (koinInject() as SpaceLaunchModel),
-    actionHandler: foo.bar.clean.ui.actionhandlers.screens.ActionHandlerSpaceLaunchScreen = koinInject(),
+    actionHandler: ActionHandlerSpaceLaunchScreen = koinInject(),
 ) {
 
     val spaceLaunchState by spaceLaunchStateProvider.toState()
 
     LaunchedEffect(Unit) {
         if (spaceLaunchState.launches.isEmpty()) {
-            actionHandler.handle(foo.bar.clean.ui.actionhandlers.Act.ScreenSpaceLaunch.RefreshLaunches)
+            actionHandler.handle(Act.ScreenSpaceLaunch.RefreshLaunches)
         }
     }
 

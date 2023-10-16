@@ -1,12 +1,9 @@
 package foo.bar.clean.ui.screens.settings
 
 import androidx.compose.foundation.Canvas
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -17,17 +14,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import androidx.core.graphics.toColor
 import co.early.fore.kt.core.delegate.Fore
 import co.early.fore.ui.size.LocalWindowSize
 import co.early.fore.ui.size.MinDimBasedDp
 import co.early.fore.ui.size.WindowSize
 import foo.bar.clean.domain.features.settings.DarkMode
-import foo.bar.clean.ui.actionhandlers.Act
 import foo.bar.clean.ui.R
+import foo.bar.clean.ui.actionhandlers.Act
 import foo.bar.clean.ui.common.components.StateWrapperView
 import foo.bar.clean.ui.common.components.ViewTemplate
 import foo.bar.clean.ui.common.components.elements.Btn
@@ -43,7 +38,7 @@ import foo.bar.clean.ui.theme.LocalAppColors
 @Composable
 fun SettingsView(
     viewState: SettingsViewState,
-    perform: (foo.bar.clean.ui.actionhandlers.Act) -> Unit = {},
+    perform: (Act) -> Unit = {},
     size: WindowSize = LocalWindowSize.current,
 ) {
 
@@ -61,8 +56,8 @@ fun SettingsView(
             Settings(
                 viewState = viewState,
                 size = size,
-                setDarkMode = { darkMode -> perform(foo.bar.clean.ui.actionhandlers.Act.ScreenSettings.SetDarkMode(darkMode)) },
-                chooseColorBtnClicked = { perform(foo.bar.clean.ui.actionhandlers.Act.ScreenSettings.ToSetColorScreen) },
+                setDarkMode = { darkMode -> perform(Act.ScreenSettings.SetDarkMode(darkMode)) },
+                chooseColorBtnClicked = { perform(Act.ScreenSettings.ToSetColorScreen) },
             )
         }
     }
@@ -137,5 +132,5 @@ fun Settings(
 }
 
 private fun ULong?.toColor(): Color? {
-    return this?.let{ Color(value = this) }
+    return this?.let { Color(value = this) }
 }

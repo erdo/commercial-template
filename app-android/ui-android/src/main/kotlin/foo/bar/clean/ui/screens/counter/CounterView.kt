@@ -12,7 +12,6 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -32,8 +31,8 @@ import co.early.fore.ui.size.LocalWindowSize
 import co.early.fore.ui.size.WindowSize
 import co.early.fore.ui.size.minimumDimension
 import foo.bar.clean.domain.features.counter.CounterState
-import foo.bar.clean.ui.actionhandlers.Act
 import foo.bar.clean.ui.R
+import foo.bar.clean.ui.actionhandlers.Act
 import foo.bar.clean.ui.common.components.CircularProgressIndicatorDelayed
 import foo.bar.clean.ui.common.components.StateWrapperView
 import foo.bar.clean.ui.common.components.ViewTemplate
@@ -145,7 +144,7 @@ fun CustomButton(
     enabled: Boolean,
     buttonSize: Dp,
     buttonFontSize: TextUnit,
-    callback: () -> Unit = {}
+    callback: () -> Unit = {},
 ) {
 
     Fore.i("CustomButton")

@@ -10,9 +10,10 @@ import kotlinx.serialization.descriptors.SerialDescriptor
 import kotlinx.serialization.encoding.Decoder
 import kotlinx.serialization.encoding.Encoder
 
-object MapStringStringDeserializer: KSerializer<Map<String, String>> {
+object MapStringStringDeserializer : KSerializer<Map<String, String>> {
 
-    private val mapSerializer = ListSerializer(MapEntrySerializer(String.serializer(), String.serializer()))
+    private val mapSerializer =
+        ListSerializer(MapEntrySerializer(String.serializer(), String.serializer()))
     override val descriptor: SerialDescriptor = mapSerializer.descriptor
 
     override fun deserialize(decoder: Decoder): Map<String, String> {
@@ -24,9 +25,10 @@ object MapStringStringDeserializer: KSerializer<Map<String, String>> {
     }
 }
 
-object MapStringBooleanDeserializer: KSerializer<Map<String, Boolean>> {
+object MapStringBooleanDeserializer : KSerializer<Map<String, Boolean>> {
 
-    private val mapSerializer = ListSerializer(MapEntrySerializer(String.serializer(), Boolean.serializer()))
+    private val mapSerializer =
+        ListSerializer(MapEntrySerializer(String.serializer(), Boolean.serializer()))
     override val descriptor: SerialDescriptor = mapSerializer.descriptor
 
     override fun deserialize(decoder: Decoder): Map<String, Boolean> {
@@ -38,9 +40,10 @@ object MapStringBooleanDeserializer: KSerializer<Map<String, Boolean>> {
     }
 }
 
-object MapFeatureFlagBooleanDeserializer: KSerializer<Map<FeatureFlag, Boolean>> {
+object MapFeatureFlagBooleanDeserializer : KSerializer<Map<FeatureFlag, Boolean>> {
 
-    private val mapSerializer = ListSerializer(PairSerializer(FeatureFlag.serializer(), Boolean.serializer()))
+    private val mapSerializer =
+        ListSerializer(PairSerializer(FeatureFlag.serializer(), Boolean.serializer()))
     override val descriptor: SerialDescriptor = mapSerializer.descriptor
 
     override fun deserialize(decoder: Decoder): Map<FeatureFlag, Boolean> {

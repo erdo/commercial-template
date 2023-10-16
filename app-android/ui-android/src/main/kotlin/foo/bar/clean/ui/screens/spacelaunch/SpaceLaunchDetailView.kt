@@ -1,35 +1,21 @@
 package foo.bar.clean.ui.screens.spacelaunch
 
-import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.ExitTransition
-import androidx.compose.animation.core.animateFloatAsState
-import androidx.compose.animation.core.tween
-import androidx.compose.animation.fadeIn
-import androidx.compose.animation.fadeOut
-import androidx.compose.animation.slideInVertically
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Done
-import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.res.stringResource
 import co.early.fore.kt.core.delegate.Fore
 import co.early.fore.ui.size.LocalWindowSize
@@ -37,9 +23,8 @@ import co.early.fore.ui.size.WindowSize
 import co.early.fore.ui.size.minimumDimension
 import coil.compose.AsyncImage
 import foo.bar.clean.domain.DomainError.NoError
-import foo.bar.clean.ui.actionhandlers.Act
 import foo.bar.clean.ui.R
-import foo.bar.clean.ui.common.anim.CustomEasing
+import foo.bar.clean.ui.actionhandlers.Act
 import foo.bar.clean.ui.common.components.AlertOneButton
 import foo.bar.clean.ui.common.components.CircularProgressIndicatorDelayed
 import foo.bar.clean.ui.common.components.StateWrapperView
@@ -55,7 +40,7 @@ import foo.bar.clean.ui.common.mapToUserMessage
 @Composable
 fun SpaceLaunchDetailView(
     viewState: SpaceDetailViewState,
-    perform: (foo.bar.clean.ui.actionhandlers.Act) -> Unit = {},
+    perform: (Act) -> Unit = {},
     size: WindowSize = LocalWindowSize.current,
 ) {
     StateWrapperView(
@@ -69,12 +54,12 @@ fun SpaceLaunchDetailView(
             SpaceLaunchDetail(
                 viewState = viewState,
                 size = size,
-                refreshLaunchDetail = { id -> perform(foo.bar.clean.ui.actionhandlers.Act.ScreenSpaceLaunch.RefreshLaunchDetail(id)) },
-                bookLaunch = { perform(foo.bar.clean.ui.actionhandlers.Act.ScreenSpaceLaunch.MakeBooking) },
-                cancelBooking = { perform(foo.bar.clean.ui.actionhandlers.Act.ScreenSpaceLaunch.CancelBooking) },
-                signIn = { perform(foo.bar.clean.ui.actionhandlers.Act.ScreenSpaceLaunch.SignIn) },
-                signOut = { perform(foo.bar.clean.ui.actionhandlers.Act.ScreenSpaceLaunch.SignOut) },
-                clearErrors = { perform(foo.bar.clean.ui.actionhandlers.Act.ScreenSpaceLaunch.ClearErrors) },
+                refreshLaunchDetail = { id -> perform(Act.ScreenSpaceLaunch.RefreshLaunchDetail(id)) },
+                bookLaunch = { perform(Act.ScreenSpaceLaunch.MakeBooking) },
+                cancelBooking = { perform(Act.ScreenSpaceLaunch.CancelBooking) },
+                signIn = { perform(Act.ScreenSpaceLaunch.SignIn) },
+                signOut = { perform(Act.ScreenSpaceLaunch.SignOut) },
+                clearErrors = { perform(Act.ScreenSpaceLaunch.ClearErrors) },
             )
         }
     }

@@ -20,7 +20,7 @@ class ActionHandlerSettingsScreen(
         when (act) {
             is Act.ScreenSettings.SetDarkMode -> settingsModel.setDarkMode(act.darkMode)
             is Act.ScreenSettings.SetColorAndBack -> navigationModel.popBackStack {
-                when(it){
+                when (it) {
                     is Location.SettingsLocations.SettingsLocation -> {
                         it.copy(color = act.color)
                     }

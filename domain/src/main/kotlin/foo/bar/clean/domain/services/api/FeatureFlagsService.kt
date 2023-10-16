@@ -11,8 +11,8 @@ interface FeatureFlagsService {
 @Serializable
 sealed class FeatureFlag {
     @Serializable
-    object Fruit : FeatureFlag()
+    data object Fruit : FeatureFlag()
 
     @Serializable
-    object Counter : FeatureFlag()
+    data object Counter : FeatureFlag()
 }

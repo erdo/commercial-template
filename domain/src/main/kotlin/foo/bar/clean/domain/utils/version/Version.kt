@@ -29,7 +29,7 @@ package foo.bar.clean.domain.utils.version
  *
  */
 class Version(
-    v: String
+    v: String,
 ) : Comparable<Version> {
 
     val v = v
@@ -38,8 +38,12 @@ class Version(
     override fun compareTo(other: Version): Int {
 
         val listSwap = tokens.size < other.tokens.size
-        val mostTokens = if (listSwap) { other } else this
-        val leastTokens = if (listSwap) { this } else other
+        val mostTokens = if (listSwap) {
+            other
+        } else this
+        val leastTokens = if (listSwap) {
+            this
+        } else other
 
         mostTokens.tokens.forEachIndexed { index, i ->
             when {
@@ -51,8 +55,17 @@ class Version(
         return 0
     }
 
-    private fun otherIsBigger(listSwap: Boolean) = if (listSwap) { 1 } else { -1 }
-    private fun otherIsSmaller(listSwap: Boolean) = if (listSwap) { -1 } else { 1 }
+    private fun otherIsBigger(listSwap: Boolean) = if (listSwap) {
+        1
+    } else {
+        -1
+    }
+
+    private fun otherIsSmaller(listSwap: Boolean) = if (listSwap) {
+        -1
+    } else {
+        1
+    }
 
     private fun tokenizeAndVerify(version: String): List<Int> {
         val tokens = version.split(".")
