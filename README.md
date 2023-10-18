@@ -19,7 +19,7 @@ The Wiki has a lot of the reasoning behind the various decisions made, but it's 
 - [State vs Events](https://github.com/erdo/commercial-template/wiki/4-States-vs-Events)
 - [Startup Sequence](https://github.com/erdo/commercial-template/wiki/5-Startup-Sequence)
 - [Code Allocation](https://github.com/erdo/commercial-template/wiki/6-Code-Allocation)
-- [Memory Performance](https://github.com/erdo/commercial-template/wiki/7-Memory-Performance)
+- [Memory Profile](https://github.com/erdo/commercial-template/wiki/7-Memory-Profile)
 
 ## App template
 In case you want to use this app as a starting point for something else, there is a bash script included that will rename the app packages (it's written for mac, use at your own risk).

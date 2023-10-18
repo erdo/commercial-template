@@ -172,7 +172,7 @@ fun <T : Act> AppNavigation(
 @Composable
 fun appScreenTitle(location: Location): String {
 
-    Fore.i("AppScreenTitle()")
+    Fore.i("appScreenTitle()")
 
     return stringResource(
         id = when (location) {
@@ -193,7 +193,7 @@ fun appScreenContent(location: Location) =
     @Composable { paddingValues: PaddingValues ->
         Box(modifier = Modifier.padding(paddingValues)) {
 
-            Fore.i("AppScreenContent()")
+            Fore.i("appScreenContent()")
 
             when (location) {
                 Location.CounterLocation -> CounterScreen()
@@ -229,7 +229,7 @@ fun appStartDrawerItems(
     currentLocation: Location,
 ): List<NavigationItem> {
 
-    Fore.i("AppStartDrawerItems()")
+    Fore.i("appStartDrawerItems()")
 
     return listOf(
         NavigationItem(
@@ -318,7 +318,7 @@ fun appActionItems(
     favouritesModel: FavouritesModel = koinInject(),
 ): List<NavigationItem> {
 
-    Fore.i("AppActionItems()")
+    Fore.i("appActionItems()")
 
     val favouritesState by favouritesModel.observeAsState { favouritesModel.state }
 
@@ -395,7 +395,7 @@ fun appBottomBarItems(
     currentLocation: Location,
 ): List<NavigationItem>{
 
-    Fore.i("AppBottomBarItems()")
+    Fore.i("appBottomBarItems()")
 
     return listOf(
         NavigationItem(
