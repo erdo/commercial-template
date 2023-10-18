@@ -5,7 +5,7 @@ import foo.bar.clean.domain.DomainError
 import kotlinx.serialization.Serializable
 
 interface AuthService {
-    suspend fun login(email: String): Either<DomainError, Auth>
+    suspend fun signin(email: String): Either<DomainError, Auth>
 }
 
 @Serializable

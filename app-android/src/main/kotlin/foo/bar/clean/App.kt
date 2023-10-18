@@ -33,7 +33,7 @@ class App : MultiDexApplication() {
             Fore.setDelegate(DebugDelegateDefault(tagPrefix = "clean_"))
         }
 
-        Fore.e("APP")
+        Fore.i("onCreate()")
 
         startKoin {
             if (BuildConfig.DEBUG) {

@@ -147,7 +147,7 @@ fun CustomButton(
     callback: () -> Unit = {},
 ) {
 
-    Fore.i("CustomButton")
+    Fore.d("CustomButton")
 
     Button(
         modifier = modifier.size(buttonSize),

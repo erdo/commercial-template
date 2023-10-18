@@ -35,7 +35,7 @@ class ErrorHandlerRest(private val logWrapper: Logger? = null) : ErrorHandler<Da
         customErrorKlazz: KClass<CE>?,
     ): DataError {
 
-        Fore.getLogger(logWrapper).d("handling error in global error handler", t)
+        Fore.getLogger(logWrapper).e("handling error in global error handler", t)
 
         val errorMessage = when (t) {
 
@@ -87,7 +87,7 @@ class ErrorHandlerRest(private val logWrapper: Logger? = null) : ErrorHandler<Da
             else -> Network
         }
 
-        Fore.getLogger(logWrapper).d("replyWithFailure() returning:$errorMessage")
+        Fore.getLogger(logWrapper).w("replyWithFailure() returning:$errorMessage")
         return errorMessage
     }
 
@@ -104,7 +104,7 @@ class ErrorHandlerRest(private val logWrapper: Logger? = null) : ErrorHandler<Da
 
             val bodyContent = errorResponse.bodyAsText(Charsets.UTF_8)
             Fore.getLogger(logWrapper)
-                .d("parseCustomError() attempting to parse this content:\n $bodyContent")
+                .w("parseCustomError() attempting to parse this content:\n $bodyContent")
             val errorClass =
                 Json.decodeFromString(serializer(customErrorKlazz.java), bodyContent) as CE
             customError = errorClass.message
@@ -134,7 +134,7 @@ class ErrorHandlerRest(private val logWrapper: Logger? = null) : ErrorHandler<Da
             }
         }
 
-        Fore.getLogger(logWrapper).d("parseCustomError() returning:$customError")
+        Fore.getLogger(logWrapper).w("parseCustomError() returning:$customError")
         return customError
     }
 }

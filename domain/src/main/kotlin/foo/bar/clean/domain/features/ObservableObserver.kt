@@ -25,7 +25,7 @@ abstract class ObservableObserver<S : State>(
     private val upstreamObserver: Observer = Observer { notifyObservers() }
 
     init {
-        Fore.e("ObsObs init()")
+        Fore.i("ObsObs init()")
     }
 
     override fun addObserver(observer: Observer) {

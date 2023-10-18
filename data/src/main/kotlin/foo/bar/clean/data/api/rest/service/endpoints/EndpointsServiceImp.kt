@@ -8,7 +8,9 @@ import foo.bar.clean.data.DataError
 import foo.bar.clean.data.api.Endpoints
 import foo.bar.clean.data.toDomain
 import foo.bar.clean.domain.DomainError
+import foo.bar.clean.domain.SLOMO
 import foo.bar.clean.domain.services.api.EndpointsService
+import kotlinx.coroutines.delay
 
 class EndpointsServiceImp(
     private val api: EndpointsApi,
@@ -18,11 +20,15 @@ class EndpointsServiceImp(
 
     override suspend fun fetchEndpoints(endpointsUrl: String): Either<DomainError, Unit> {
 
+        if (SLOMO) {
+            delay(500)
+        }
+
+        Fore.i("fetchEndpoints()")
+
         val result = toDomain(wrapper.processCallAwait {
             api.fetchEndpoints(url = endpointsUrl).endpoints
         }) { it.toData() }
-
-        Fore.e("fetchEndpoints result: $result")
 
         return when (result) {
             is Either.Fail -> result

@@ -1,6 +1,6 @@
 package foo.bar.clean.data.api.rest.service.phonehome
 
-import foo.bar.clean.domain.SLOMO
+import foo.bar.clean.data.api.offlineRestClient
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.request.get
@@ -22,12 +22,10 @@ class PhoneHomeApi(
     private val url: String = "https://run.mocky.io/v3/707ec06d-3008-4e73-a383-7a2177f3ef90",
 ) {
 
-    private val delay = if (SLOMO) {
-        "/?mocky-delay=500ms"
-    } else ""
+    private val client = offlineRestClient("demostubs/rest/phonehome.json", httpClient)
 
     suspend fun phoneHome(): PhoneHomeResultPojo {
-        return httpClient.get("$url$delay").body()
+        return client.get(url).body()
     }
 }
 

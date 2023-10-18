@@ -39,7 +39,7 @@ fun Activity.SplashScreen(
 
     initModelState.step.let { step ->
 
-        Fore.e("initialisatino step:$step")
+        Fore.d("initialisatino step:$step")
 
         when (step) {
             is Step.Loading -> SplashLoading(step.progress)

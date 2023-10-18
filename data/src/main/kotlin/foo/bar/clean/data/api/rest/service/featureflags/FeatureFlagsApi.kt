@@ -1,8 +1,8 @@
 package foo.bar.clean.data.api.rest.service.featureflags
 
 import foo.bar.clean.data.api.Endpoints
+import foo.bar.clean.data.api.offlineRestClient
 import foo.bar.clean.data.api.rest.service.endpoints.EndpointKey.FeatureFlags
-import foo.bar.clean.domain.SLOMO
 import foo.bar.clean.domain.utils.MapStringBooleanDeserializer
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
@@ -18,13 +18,11 @@ class FeatureFlagsApi(
     private val endpoints: Endpoints,
 ) {
 
-    private val delay = if (SLOMO) {
-        "/?mocky-delay=500ms"
-    } else ""
+    private val client = offlineRestClient("demostubs/rest/featureflags.json", httpClient)
 
     // FeatureFlags: "https://run.mocky.io/v3/9a969b95-84b9-4d72-9b61-0c7135421f5d"
     suspend fun fetchFlags(): FeatureFlagsPojo {
-        return httpClient.get(endpoints.url(FeatureFlags) + delay).body()
+        return client.get(endpoints.url(FeatureFlags)).body()
     }
 }
 

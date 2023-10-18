@@ -39,7 +39,7 @@ fun <T : Act> AdaptiveTopAppBar(
     userActionHandler: ActionHandler<T>,
 ): MinDimBasedComposable {
 
-    Fore.i("AdaptiveTopAppBar()")
+    Fore.d("AdaptiveTopAppBar()")
 
     return MinDimBasedComposable(
         s = {

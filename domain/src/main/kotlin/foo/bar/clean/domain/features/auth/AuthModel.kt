@@ -46,7 +46,7 @@ class AuthModel(
         notifyObservers()
 
         launchMain {
-            when (val result = authService.login(email)) {
+            when (val result = authService.signin(email)) {
                 is Success -> {
                     state = AuthState(token = result.value.token ?: NO_SESSION)
                     notifyObservers()

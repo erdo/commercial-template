@@ -1,6 +1,6 @@
 package foo.bar.clean.data.api.rest.service.endpoints
 
-import foo.bar.clean.domain.SLOMO
+import foo.bar.clean.data.api.offlineRestClient
 import foo.bar.clean.domain.utils.MapStringStringDeserializer
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
@@ -18,13 +18,11 @@ class EndpointsApi(
     private val httpClient: HttpClient,
 ) {
 
-    private val delay = if (SLOMO) {
-        "/?mocky-delay=500ms"
-    } else ""
+    private val client = offlineRestClient("demostubs/rest/endpoints.json", httpClient)
 
     // endpoints "https://run.mocky.io/v3/527b8f12-138e-431e-b7de-6698e8c6b32f",
     suspend fun fetchEndpoints(url: String): EndpointsPojo {
-        return httpClient.get(url + delay).body()
+        return client.get(url).body()
     }
 }
 

@@ -6,6 +6,8 @@ import foo.bar.clean.data.BookTripMutation
 import foo.bar.clean.data.CancelTripMutation
 import foo.bar.clean.data.LaunchDetailsQuery
 import foo.bar.clean.data.LaunchListQuery
+import foo.bar.clean.data.api.offlineApolloClient
+import foo.bar.clean.data.api.offlineRestClient
 
 /**
  * Raw graphql service, network DTOs are provided for us by Apollo
@@ -14,11 +16,13 @@ class LaunchApi(
     private val apolloClient: ApolloClient,
 ) {
     suspend fun getLaunchList(): ApolloResponse<LaunchListQuery.Data> {
-        return apolloClient.query(LaunchListQuery()).execute()
+        val client = offlineApolloClient("demostubs/gql/spacelaunches.json", apolloClient)
+        return client.query(LaunchListQuery()).execute()
     }
 
     suspend fun refreshLaunchDetail(id: String): ApolloResponse<LaunchDetailsQuery.Data> {
-        return apolloClient.query(LaunchDetailsQuery(id)).execute()
+        val client = offlineApolloClient("demostubs/gql/spacelaunchdetail.json", apolloClient)
+        return client.query(LaunchDetailsQuery(id)).execute()
     }
 
     suspend fun bookTrip(id: String): ApolloResponse<BookTripMutation.Data> {

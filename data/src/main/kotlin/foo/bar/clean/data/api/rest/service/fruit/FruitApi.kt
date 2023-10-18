@@ -1,6 +1,7 @@
 package foo.bar.clean.data.api.rest.service.fruit
 
 import foo.bar.clean.data.api.Endpoints
+import foo.bar.clean.data.api.offlineRestClient
 import foo.bar.clean.data.api.rest.service.endpoints.EndpointKey.FruitFetchNotOk
 import foo.bar.clean.data.api.rest.service.endpoints.EndpointKey.FruitFetchOk
 import io.ktor.client.HttpClient
@@ -41,17 +42,16 @@ class FruitApi(
     private val endpoints: Endpoints,
 ) {
 
-    private val mediumDelay = 3
-    private val smallDelay = 0
-
     suspend fun fetchFruitsOk(): List<FruitPojo> {
+        val client = offlineRestClient("demostubs/rest/fruit_ok.json", httpClient)
         // FruitFetchOk "https://run.mocky.io/v3/04943c15-1797-470f-a161-cf4234d765a5"
-        return httpClient.get("${endpoints.url(FruitFetchOk)}/?mocky-delay=${smallDelay}s").body()
+        return client.get(endpoints.url(FruitFetchOk)).body()
     }
 
     suspend fun fetchFruitsNotAuthorised(): List<FruitPojo> {
+        val client = offlineRestClient("demostubs/rest/fruit_notok.json", httpClient)
         // FruitFetchNotOk "https://run.mocky.io/v3/64107782-92b2-4a29-bb60-d41390e70134"
-        return httpClient.get("${endpoints.url(FruitFetchNotOk)}/?mocky-delay=${mediumDelay}s")
+        return client.get(endpoints.url(FruitFetchNotOk))
             .body()
     }
 

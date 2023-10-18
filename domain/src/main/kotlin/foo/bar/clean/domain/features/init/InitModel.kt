@@ -91,7 +91,7 @@ class InitModel(
 
         val initError = loadableModels.findFirstError()
         val loadingCount = loadableModels.numberStillLoading()
-        Fore.i("loadingCount:$loadingCount")
+        Fore.d("loadingCount:$loadingCount")
         val loadingTotal = loadableModels.size
         val overallProgress = overallProgress(
             preInitProgress = preInitModel.state.preInitProgress,
@@ -99,7 +99,7 @@ class InitModel(
             initProgress = ((loadingTotal - loadingCount).toFloat() / loadingTotal.toFloat())
         )
 
-        Fore.w("overallProgress:$overallProgress preInitProgress:${preInitModel.state.preInitProgress} preInitError:${preInitModel.state.error} preInitComplete:$preInitComplete loadingCount:$loadingCount preInitFailed():${preInitModel.state.preInitFailed()} modelsError:$initError")
+        Fore.d("overallProgress:$overallProgress preInitProgress:${preInitModel.state.preInitProgress} preInitError:${preInitModel.state.error} preInitComplete:$preInitComplete loadingCount:$loadingCount preInitFailed():${preInitModel.state.preInitFailed()} modelsError:$initError")
 
         return preInitModel.state.run {
             when {
@@ -128,7 +128,7 @@ private fun List<ReadableStateCanLoad<*>>.findFirstError(): DomainError {
 
 private fun List<ReadableStateCanLoad<*>>.numberStillLoading(): Int {
     return count { model ->
-        Fore.e("model loading check:$model ${(model.state as CanLoad).loading}")
+        Fore.d("model loading check:$model ${(model.state as CanLoad).loading}")
         (model.state as CanLoad).loading
     }
 }

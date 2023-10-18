@@ -1,5 +1,6 @@
 package foo.bar.clean.data.api.graphql.service.auth
 
+import co.early.fore.kt.core.delegate.Fore
 import co.early.fore.kt.core.type.Either
 import co.early.fore.kt.net.apollo3.CallWrapperApollo3
 import foo.bar.clean.data.DataError
@@ -15,11 +16,13 @@ class AuthServiceImp(
     private val wrapper: CallWrapperApollo3<DataError>,
 ) : AuthService {
 
-    override suspend fun login(email: String): Either<DomainError, Auth> {
+    override suspend fun signin(email: String): Either<DomainError, Auth> {
 
         if (SLOMO) {
             delay(1000)
         }
+
+        Fore.i("signin()")
 
         return toDomain(wrapper.processCallAwait {
             api.login(email)

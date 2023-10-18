@@ -36,7 +36,7 @@ fun SplashLoading(
     progress: Float,
 ) {
 
-    Fore.e("splash loading progress:$progress")
+    Fore.i("SplashLoading progress:$progress")
 
     Background {
 

@@ -32,7 +32,7 @@ fun <T : Act> ContentScaffold(
     userActionHandler: ActionHandler<T>,
 ) {
 
-    Fore.i("ContentScaffold()")
+    Fore.d("ContentScaffold()")
 
     val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior()
 

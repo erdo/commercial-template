@@ -1,0 +1,14 @@
+{
+  "data": {
+    "launch": {
+      "id": "106",
+      "site": "CCAFS SLC 40",
+      "mission": {
+        "name": "GPS III SV04 (Sacagawea)",
+        "thumb": "https://i.imgur.com/Ehe9AgY.png",
+        "missionPatch": "https://i.imgur.com/Ehe9AgY.png"
+      },
+      "isBooked": false
+    }
+  }
+}

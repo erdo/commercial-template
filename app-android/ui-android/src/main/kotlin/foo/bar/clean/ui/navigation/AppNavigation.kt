@@ -88,7 +88,7 @@ fun <T : Act> AppNavigation(
     //userActionHandler: ActionHandler<T> = ActionHandlers(currentLocation),
 ) {
 
-    Fore.i("AppNavigation()")
+    Fore.d("AppNavigation()")
 
     val startDrawerState = rememberDrawerState(DrawerValue.Closed)
     val scope = rememberCoroutineScope()
@@ -172,7 +172,7 @@ fun <T : Act> AppNavigation(
 @Composable
 fun appScreenTitle(location: Location): String {
 
-    Fore.i("appScreenTitle()")
+    Fore.d("appScreenTitle()")
 
     return stringResource(
         id = when (location) {
@@ -193,7 +193,7 @@ fun appScreenContent(location: Location) =
     @Composable { paddingValues: PaddingValues ->
         Box(modifier = Modifier.padding(paddingValues)) {
 
-            Fore.i("appScreenContent()")
+            Fore.d("appScreenContent()")
 
             when (location) {
                 Location.CounterLocation -> CounterScreen()
@@ -229,7 +229,7 @@ fun appStartDrawerItems(
     currentLocation: Location,
 ): List<NavigationItem> {
 
-    Fore.i("appStartDrawerItems()")
+    Fore.d("appStartDrawerItems()")
 
     return listOf(
         NavigationItem(
@@ -318,7 +318,7 @@ fun appActionItems(
     favouritesModel: FavouritesModel = koinInject(),
 ): List<NavigationItem> {
 
-    Fore.i("appActionItems()")
+    Fore.d("appActionItems()")
 
     val favouritesState by favouritesModel.observeAsState { favouritesModel.state }
 
@@ -395,7 +395,7 @@ fun appBottomBarItems(
     currentLocation: Location,
 ): List<NavigationItem>{
 
-    Fore.i("appBottomBarItems()")
+    Fore.d("appBottomBarItems()")
 
     return listOf(
         NavigationItem(

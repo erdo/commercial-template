@@ -1,5 +1,6 @@
 package foo.bar.clean.data.api.graphql.service.launch
 
+import co.early.fore.kt.core.delegate.Fore
 import co.early.fore.kt.core.type.Either
 import co.early.fore.kt.net.apollo3.CallWrapperApollo3
 import foo.bar.clean.data.DataError
@@ -25,6 +26,8 @@ class LaunchServiceImp(
             delay(2000)
         }
 
+        Fore.i("refreshLaunchList()")
+
         return toDomain(wrapper.processCallAwait {
             api.getLaunchList()
         }) {
@@ -38,6 +41,8 @@ class LaunchServiceImp(
             delay(1000)
         }
 
+        Fore.i("refreshLaunchDetail()")
+
         return toDomain(wrapper.processCallAwait {
             api.refreshLaunchDetail(id)
         }) {
@@ -46,6 +51,12 @@ class LaunchServiceImp(
     }
 
     override suspend fun bookTrip(id: String): Either<DomainError, BookingResult> {
+
+        if (SLOMO) {
+            delay(500)
+        }
+
+        Fore.i("bookTrip()")
 
         var dataResult = wrapper.processCallAwait {
             api.bookTrip(id)
@@ -66,6 +77,12 @@ class LaunchServiceImp(
     }
 
     override suspend fun cancelTrip(id: String): Either<DomainError, BookingResult> {
+
+        if (SLOMO) {
+            delay(500)
+        }
+
+        Fore.i("cancelTrip()")
 
         var dataResult = wrapper.processCallAwait {
             api.cancelTrip(id)
