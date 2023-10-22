@@ -18,7 +18,7 @@ The Wiki has a lot of the reasoning behind the various decisions made, but it's 
 - [UI Hierarchy](https://github.com/erdo/commercial-template/wiki/3-UI-Hierarchy)
 - [State vs Events](https://github.com/erdo/commercial-template/wiki/4-States-vs-Events)
 - [Startup Sequence](https://github.com/erdo/commercial-template/wiki/5-Startup-Sequence)
-- [Code Allocation](https://github.com/erdo/commercial-template/wiki/6-Code-Allocation)
+- [Lines of Code Analysis](https://github.com/erdo/commercial-template/wiki/6-Lines-Of-Code-Analysis)
 - [Memory Profile](https://github.com/erdo/commercial-template/wiki/7-Memory-Profile)
 
 ## App template
