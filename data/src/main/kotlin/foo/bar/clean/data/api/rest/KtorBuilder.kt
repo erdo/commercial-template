@@ -1,9 +1,15 @@
 package foo.bar.clean.data.api.rest
 
+import co.early.fore.kt.core.delegate.Fore
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.okhttp.OkHttp
 import io.ktor.client.plugins.HttpRequestRetry
+import io.ktor.client.plugins.HttpTimeout
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
+import io.ktor.client.plugins.logging.LogLevel
+import io.ktor.client.plugins.logging.Logger
+import io.ktor.client.plugins.logging.Logging
+import io.ktor.client.plugins.observer.ResponseObserver
 import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
 import okhttp3.Interceptor
@@ -16,6 +22,8 @@ import okhttp3.Interceptor
  * see @[co.early.fore.net.testhelpers.InterceptorStubbedService]
  *
  */
+private const val TIME_OUT = 10_000L
+
 object KtorBuilder {
 
     /**
@@ -39,6 +47,13 @@ object KtorBuilder {
                     Json {
                         isLenient = true
                         ignoreUnknownKeys = true
+                        /**
+                         * explicitNulls = false
+                         *
+                         * If 'explicitNulls = true' (the default), decoding will fail if Nullable properties (with no defaults) are not included in the JSON with kotlinx.serialization.MissingFieldException
+                         * When encoding with 'explicitNulls = false' Nullable properties (with null value) are not included in the JSON
+                         * See: https://github.com/Kotlin/kotlinx.serialization/blob/v1.5.1/docs/json.md#explicit-nulls
+                         */
                     }
                 )
             }
@@ -48,6 +63,34 @@ object KtorBuilder {
                     maxDelayMs = 3000,
                     randomizationMs = 2000
                 )
+            }
+            install(HttpTimeout) {
+                requestTimeoutMillis = TIME_OUT
+                connectTimeoutMillis = TIME_OUT
+                socketTimeoutMillis = TIME_OUT
+            }
+            install(Logging) {
+                logger = object : Logger {
+                    override fun log(message: String) {
+                        Fore.getLogger().i("Logger Ktor =>", message)
+                    }
+                }
+                level = LogLevel.INFO
+            }
+            /**
+             * Set common headers and/or url if required
+             *
+             * install(DefaultRequest) {
+             * header(HttpHeaders.ContentType, ContentType.Application.Json)
+             * }
+             */
+            install(ResponseObserver) {
+                onResponse { response ->
+                    Fore.getLogger().i(
+                        "HTTP status code:",
+                        "${response.status.value} ${response.status.description}"
+                    )
+                }
             }
         }
     }
