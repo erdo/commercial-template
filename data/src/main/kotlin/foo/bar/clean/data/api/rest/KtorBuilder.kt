@@ -9,8 +9,8 @@ import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.client.plugins.logging.LogLevel
 import io.ktor.client.plugins.logging.Logger
 import io.ktor.client.plugins.logging.Logging
-import io.ktor.client.plugins.observer.ResponseObserver
 import io.ktor.serialization.kotlinx.json.json
+import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json
 import okhttp3.Interceptor
 
@@ -32,6 +32,7 @@ object KtorBuilder {
      * the last one in the list
      * @return ktor HttpClient object suitable for instantiating service interfaces
      */
+    @OptIn(ExperimentalSerializationApi::class)
     fun create(vararg interceptors: Interceptor): HttpClient {
 
         val okHttpConfig = OkHttp.create {
@@ -41,19 +42,14 @@ object KtorBuilder {
         }
 
         return HttpClient(okHttpConfig) {
+
             expectSuccess = true
             install(ContentNegotiation) {
                 json(
                     Json {
                         isLenient = true
                         ignoreUnknownKeys = true
-                        /**
-                         * explicitNulls = false
-                         *
-                         * If 'explicitNulls = true' (the default), decoding will fail if Nullable properties (with no defaults) are not included in the JSON with kotlinx.serialization.MissingFieldException
-                         * When encoding with 'explicitNulls = false' Nullable properties (with null value) are not included in the JSON
-                         * See: https://github.com/Kotlin/kotlinx.serialization/blob/v1.5.1/docs/json.md#explicit-nulls
-                         */
+                        explicitNulls = false
                     }
                 )
             }
@@ -72,7 +68,7 @@ object KtorBuilder {
             install(Logging) {
                 logger = object : Logger {
                     override fun log(message: String) {
-                        Fore.getLogger().i("Logger Ktor =>", message)
+                        Fore.i("Logger Ktor => $message")
                     }
                 }
                 level = LogLevel.INFO
@@ -83,15 +79,11 @@ object KtorBuilder {
              * install(DefaultRequest) {
              * header(HttpHeaders.ContentType, ContentType.Application.Json)
              * }
+             *
+             * Default headers can also be added using the OkHttp interceptor classes:
+             * Namely {@link foo.bar.clean.data.api.rest.InterceptorCommonRest} and {@link foo.bar.clean.data.api.graphql.InterceptorCommonGql}
+             *
              */
-            install(ResponseObserver) {
-                onResponse { response ->
-                    Fore.getLogger().i(
-                        "HTTP status code:",
-                        "${response.status.value} ${response.status.description}"
-                    )
-                }
-            }
         }
     }
 }
