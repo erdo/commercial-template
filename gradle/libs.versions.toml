@@ -43,6 +43,7 @@ fore-compose = { module = "co.early.fore:fore-kt-android-compose", version.ref =
 ktor-serialization = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktorVersion" }
 ktor-okhttp = { module = "io.ktor:ktor-client-okhttp", version.ref = "ktorVersion" }
 ktor-negotiation = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktorVersion" }
+ktor-logging = { module = "io.ktor:ktor-client-logging", version.ref = "ktorVersion" }
 sqldelightGradlePlugin = { module = "app.cash.sqldelight:gradle-plugin", version.ref = "sqlDelightVersion" }
 sqldelight-core = { module = "app.cash.sqldelight:runtime", version.ref = "sqlDelightVersion" }
 sqldelight-android = { module = "app.cash.sqldelight:android-driver", version.ref = "sqlDelightVersion" }

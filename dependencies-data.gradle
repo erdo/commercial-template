@@ -7,6 +7,7 @@ dependencies {
     implementation(libs.ktor.negotiation)
     implementation(libs.ktor.okhttp)
     implementation(libs.ktor.serialization)
+    implementation(libs.ktor.logging)
     implementation(libs.fore.network)
     // gql
     implementation(libs.apollo)
