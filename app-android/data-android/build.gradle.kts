@@ -1,8 +1,8 @@
 plugins {
-    id("kotlin-android")
-    id("com.android.library")
-    id("org.jetbrains.kotlin.plugin.serialization")
-    id("app.cash.sqldelight")
+    alias(libs.plugins.kotlinAndroidPlugin)
+    alias(libs.plugins.androidLibraryPlugin)
+    alias(libs.plugins.kotlinSerializationPlugin)
+    alias(libs.plugins.sqlDelightPlugin)
 }
 
 kotlin {

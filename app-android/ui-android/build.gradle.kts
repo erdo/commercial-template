@@ -1,7 +1,8 @@
 plugins {
-    id("kotlin-android")
-    id("org.jetbrains.kotlin.plugin.serialization") // for the NavModel, maybe move this in to domain
-    id("com.android.library")
+    alias(libs.plugins.kotlinAndroidPlugin)
+    alias(libs.plugins.androidLibraryPlugin)
+    alias(libs.plugins.composeCompilerPlugin)
+    alias(libs.plugins.kotlinSerializationPlugin)  // for the NavModel, maybe move this in to domain
 }
 
 kotlin {

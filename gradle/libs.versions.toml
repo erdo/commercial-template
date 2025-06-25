@@ -1,36 +1,37 @@
 [versions]
-kotlinVersion = "1.9.10"
-foreVersion = "1.6.1"
-foreComposeVersion = "1.5.2"
+kotlinVersion = "2.1.10"
+foreVersion = "1.6.5"
+foreComposeVersion = "1.6.5"
+androidPluginVersion = "8.9.3"
 composeCompilerVersion = "1.5.3"
-ktorVersion = "2.3.2"
-jvmToolchain = "8"
-apolloVersion = "3.8.1"
+ktorVersion = "3.1.1"
+jvmToolchain = "11"
+apolloVersion = "4.3.0"
 sqlDelightVersion = "2.0.0"
 androidCompileSdk = "34"
 androidTargetSdk = "33"
 androidMinSdk = "21"
-core-ktx = "1.9.0"
+core-ktx = "1.16.0"
 junit = "4.13.2"
-androidx-test-ext-junit = "1.1.5"
-espresso-core = "3.5.1"
-appcompat = "1.6.1"
-material = "1.10.0"
+androidx-test-ext-junit = "1.2.1"
+espresso-core = "3.6.1"
+appcompat = "1.7.1"
+material = "1.12.0"
 
 [libraries]
-androidGradlePlugin = "com.android.tools.build:gradle:8.1.2"
-kotlinx-serialization = "org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.1"
-kotlinx-coroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.1"
+androidGradlePlugin = "com.android.tools.build:gradle:8.1.4"
+kotlinx-serialization = "org.jetbrains.kotlinx:kotlinx-serialization-json:1.8.0"
+kotlinx-coroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.10.1"
 coil-compose = "io.coil-kt:coil-compose:2.4.0"
 lottie = "com.airbnb.android:lottie-compose:6.0.1"
 persista = "co.early.persista:persista:1.5.2"
 koin-compose = "io.insert-koin:koin-androidx-compose:3.4.5"
 koin-core = "io.insert-koin:koin-core:3.4.2"
 multidex = "androidx.multidex:multidex:2.0.1"
-apollo =  { module = "com.apollographql.apollo3:apollo-runtime", version.ref = "apolloVersion" }
-compose-activity = "androidx.activity:activity-compose:1.8.0"
-compose-constraint-layout = "androidx.constraintlayout:constraintlayout-compose:1.0.1"
-compose-bom = "androidx.compose:compose-bom:2023.10.00"
+apollo =  { module = "com.apollographql.apollo:apollo-runtime", version.ref = "apolloVersion" }
+compose-activity = "androidx.activity:activity-compose:1.10.1"
+compose-constraint-layout = "androidx.constraintlayout:constraintlayout-compose:1.1.1"
+compose-bom = "androidx.compose:compose-bom:2025.06.01"
 splashscreen = "androidx.core:core-splashscreen:1.0.1"
 kotlinGradlePlugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlinVersion" }
 kotlin-stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib", version.ref = "kotlinVersion" }
@@ -54,6 +55,19 @@ appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "a
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 
 [plugins]
+androidAppPlugin = { id = "com.android.application", version.ref = "androidPluginVersion" }
+androidLibraryPlugin = { id = "com.android.library", version.ref = "androidPluginVersion" }
+kotlinAndroidPlugin = { id = "org.jetbrains.kotlin.android", version.ref = "kotlinVersion" }
+kotlinJvmPlugin = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlinVersion" }
+kotlinMultiPlatformPlugin = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlinVersion" }
+kotlinKaptPlugin = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlinVersion" }
+kotlinSerializationPlugin = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlinVersion" }
+composeCompilerPlugin = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlinVersion" }
+#composeMultiplatformPlugin = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "composeMultiplatformPluginVersion" }
+apolloPlugin = { id = "com.apollographql.apollo", version.ref = "apolloVersion"}
+sqlDelightPlugin = { id = "app.cash.sqldelight", version.ref = "sqlDelightVersion" }
+kotlinCocoapodsPlugin = { id = "org.jetbrains.kotlin.native.cocoapods", version.ref = "kotlinVersion" }
+dokkaPlugin = "org.jetbrains.dokka:2.0.0"
 
 [bundles]
 kotlinx = ["kotlinx-coroutines", "kotlinx-serialization"]

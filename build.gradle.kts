@@ -7,19 +7,12 @@
  * ./gradlew app:testDebugUnitTest --info
  * ./gradlew app:dependencies --configuration releaseRuntimeClasspath
  */
-buildscript {
-    repositories {
-        mavenCentral()
-        google()
-    }
-    dependencies {
-        classpath(libs.kotlinGradlePlugin)
-        classpath(libs.kotlin.serialization)
-        classpath(libs.androidGradlePlugin)
-        classpath(libs.sqldelightGradlePlugin)
-    }
-}
-
-tasks.register("clean", Delete::class){
-    delete(rootProject.buildDir)
+plugins {
+    alias(libs.plugins.androidAppPlugin).apply(false)
+    alias(libs.plugins.androidLibraryPlugin).apply(false)
+    alias(libs.plugins.kotlinJvmPlugin).apply(false)
+    alias(libs.plugins.kotlinAndroidPlugin).apply(false)
+    alias(libs.plugins.composeCompilerPlugin).apply(false)
+    alias(libs.plugins.kotlinSerializationPlugin).apply(false)
+    alias(libs.plugins.kotlinKaptPlugin).apply(false)
 }

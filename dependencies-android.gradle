@@ -7,7 +7,7 @@ dependencies {
     implementation(libs.coil.compose)
     implementation(libs.lottie)
     // reactivity
-    implementation(libs.fore.android)
+    implementation(libs.fore.core)
     implementation(libs.fore.compose)
     // db
     implementation(libs.sqldelight.android)

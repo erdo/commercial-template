@@ -1,8 +1,8 @@
 plugins {
-    id("kotlin")
-    id("org.jetbrains.kotlin.plugin.serialization")
-    id("com.apollographql.apollo3").version("3.8.1") // TODO https://stackoverflow.com/questions/63190420/why-can-t-i-use-val-inside-plugins
-    id("app.cash.sqldelight")
+    alias(libs.plugins.kotlinJvmPlugin)
+    alias(libs.plugins.kotlinSerializationPlugin)
+    alias(libs.plugins.apolloPlugin)
+    alias(libs.plugins.sqlDelightPlugin)
 }
 
 kotlin {
