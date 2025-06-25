@@ -3,12 +3,11 @@ package foo.bar.clean.data.api.graphql
 import co.early.fore.kt.core.delegate.Fore
 import co.early.fore.kt.core.logging.Logger
 import co.early.fore.kt.net.apollo3.ErrorHandler
-import com.apollographql.apollo3.api.ApolloResponse
-import com.apollographql.apollo3.api.Error
-import com.apollographql.apollo3.exception.ApolloHttpException
-import com.apollographql.apollo3.exception.ApolloNetworkException
-import com.apollographql.apollo3.exception.ApolloParseException
-import com.apollographql.apollo3.exception.JsonEncodingException
+import com.apollographql.apollo.api.ApolloResponse
+import com.apollographql.apollo.api.Error
+import com.apollographql.apollo.exception.ApolloHttpException
+import com.apollographql.apollo.exception.ApolloNetworkException
+import com.apollographql.apollo.exception.JsonEncodingException
 import foo.bar.clean.data.DataError
 
 /**
@@ -42,7 +41,6 @@ class ErrorHandlerGql(private val logger: Logger? = null) : ErrorHandler<DataErr
         return t?.let {
             when (it) {
                 is java.lang.IllegalStateException -> DataError.AlreadyExecuted
-                is ApolloParseException -> DataError.Server
                 is JsonEncodingException -> DataError.Server
                 is ApolloNetworkException -> DataError.Network
                 is java.net.UnknownServiceException -> DataError.SecurityUnknown

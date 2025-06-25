@@ -1,8 +1,8 @@
 package foo.bar.clean.data.api.graphql
 
-import com.apollographql.apollo3.ApolloClient
-import com.apollographql.apollo3.network.http.HttpNetworkTransport
-import com.apollographql.apollo3.network.okHttpClient
+import com.apollographql.apollo.ApolloClient
+import com.apollographql.apollo.network.http.HttpNetworkTransport
+import com.apollographql.apollo.network.okHttpClient
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 

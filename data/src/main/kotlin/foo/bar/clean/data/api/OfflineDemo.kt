@@ -3,7 +3,7 @@ package foo.bar.clean.data.api
 import co.early.fore.kt.net.InterceptorLogging
 import co.early.fore.kt.net.testhelpers.InterceptorStubOkHttp3
 import co.early.fore.kt.net.testhelpers.Stub
-import com.apollographql.apollo3.ApolloClient
+import com.apollographql.apollo.ApolloClient
 import foo.bar.clean.data.api.graphql.ApolloBuilder
 import foo.bar.clean.data.api.rest.KtorBuilder
 import foo.bar.clean.domain.OFFLINE_APOLLO
